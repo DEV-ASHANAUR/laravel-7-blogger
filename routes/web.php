@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', 'Backend\DashboardController@index')->name('admin.dashboard');
         Route::resource('roles', 'Backend\RolesController',['names' => 'admin.roles']);
         Route::resource('admins', 'Backend\AdminsController',['names' => 'admin.admins']);
+        Route::resource('category', 'Backend\CategoryController',['names' => 'admin.category']);
     });
     
 

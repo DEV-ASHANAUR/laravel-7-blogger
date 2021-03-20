@@ -55,6 +55,16 @@
                     </li>
                     @endif
                     {{-- admin end --}}
+                    {{-- category --}}
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                                Category
+                            </span></a>
+                        <ul class="collapse @yield('category')">
+                            <li class="@yield('all-category')"><a href="{{ route('admin.category.index') }}">All Category</a></li>   
+                        </ul>
+                    </li>
+                    {{-- category end --}}
                 </ul>
             </nav>
         </div>

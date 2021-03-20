@@ -66,6 +66,26 @@ class RolePermissionSeeder extends Seeder
                     'profile.edit'
                 ]
             ],
+            [
+                'group_name' => 'category',
+                'permissions' => [
+                    'category.create',
+                    'category.view',
+                    'category.edit',
+                    'category.delete',
+                    'category.approve',
+                ]
+            ],
+            [
+                'group_name' => 'post',
+                'permissions' => [
+                    'post.create',
+                    'post.view',
+                    'post.edit',
+                    'post.delete',
+                    'post.approve',
+                ]
+            ],
             
         ];
         //assign permission
