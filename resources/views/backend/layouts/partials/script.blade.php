@@ -1,7 +1,10 @@
-<script src="{{ asset('backend') }}/assets/js/vendor/jquery-2.2.4.min.js"></script>
+{{-- <script src="{{ asset('backend') }}/assets/js/vendor/jquery-2.2.4.min.js"></script> --}}
     <!-- bootstrap 4 js -->
     <script src="{{ asset('backend') }}/assets/js/popper.min.js"></script>
     <script src="{{ asset('backend') }}/assets/js/bootstrap.min.js"></script>
+    
+    <script src="{{ asset('backend') }}/summernote/summernote-bs4.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/js/tag/tags.min.js"></script>
     <script src="{{ asset('backend') }}/assets/js/owl.carousel.min.js"></script>
     <script src="{{ asset('backend') }}/assets/js/metisMenu.min.js"></script>
     <script src="{{ asset('backend') }}/assets/js/jquery.slimscroll.min.js"></script>

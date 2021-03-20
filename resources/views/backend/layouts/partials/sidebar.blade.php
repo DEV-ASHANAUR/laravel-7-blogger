@@ -65,6 +65,23 @@
                         </ul>
                     </li>
                     {{-- category end --}}
+                    {{-- admin start --}}
+                    @if ($usr->can('post.view') || $usr->can('post.edit') || $usr->can('post.delete') || $usr->can('post.create'))
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                                Posts
+                            </span></a>
+                        <ul class="collapse @yield('post')">
+                            @if ($usr->can('post.view'))
+                            <li class="@yield('all-post')"><a href="{{ route('admin.post.index') }}">All Post</a></li>
+                            @endif
+                            @if ($usr->can('post.create'))
+                            <li class="@yield('create-post')"><a href="{{ route('admin.post.create') }}">Create Post</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                    @endif
+                    {{-- admin end --}}
                 </ul>
             </nav>
         </div>

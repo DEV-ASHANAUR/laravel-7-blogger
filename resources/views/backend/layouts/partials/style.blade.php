@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/css/slicknav.min.css">
     {{-- toastr css --}}
     <link href="{{ asset('backend') }}/alert/toastr.css" rel="stylesheet">
+    <link href="{{ asset('backend') }}/assets/css/tag/tags.css" rel="stylesheet">
     <!-- amchart css -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <!-- Start datatable css -->
@@ -20,5 +21,7 @@
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/css/default-css.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/css/styles.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/css/responsive.css">
+    <link href="{{ asset('backend') }}/summernote/summernote-bs4.css" rel="stylesheet">
+    
     <!-- modernizr css -->
     <script src="{{ asset('backend') }}/assets/js/vendor/modernizr-2.8.3.min.js"></script>

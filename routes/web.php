@@ -27,6 +27,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('roles', 'Backend\RolesController',['names' => 'admin.roles']);
         Route::resource('admins', 'Backend\AdminsController',['names' => 'admin.admins']);
         Route::resource('category', 'Backend\CategoryController',['names' => 'admin.category']);
+        Route::resource('post', 'Backend\PostController',['names' => 'admin.post']);
     });
     
 
