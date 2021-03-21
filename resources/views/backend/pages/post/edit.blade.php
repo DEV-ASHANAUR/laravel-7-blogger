@@ -259,11 +259,13 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-10 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Post Image</label>
                                     <input type="file" class="form-control" id="file-img" name="image" />
                                 </div>
-                                <div class="form-group col-md-2 col-sm-12 mt-2" id="test-img">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12 mt-2" id="test-img">
                                     <img src="{{ asset(asset('storage/post/'.$post->image)) }}" width="80px" height="80px" alt="{{ $post->image }}">
                                 </div>
                             </div>
@@ -300,7 +302,7 @@
         $(document).ready(function() {
             $('.select2').select2();
             $('#summernote1').summernote({
-                height: 150,
+                height: 400,
                 tooltip: false
             });
         });

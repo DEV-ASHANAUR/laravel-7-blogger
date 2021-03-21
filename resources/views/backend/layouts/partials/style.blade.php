@@ -24,4 +24,5 @@
     <link href="{{ asset('backend') }}/summernote/summernote-bs4.css" rel="stylesheet">
     
     <!-- modernizr css -->
+    <script src="{{ asset('backend') }}/assets/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="{{ asset('backend') }}/assets/js/vendor/modernizr-2.8.3.min.js"></script>

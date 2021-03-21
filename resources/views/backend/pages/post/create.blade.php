@@ -249,6 +249,7 @@
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="roles">Category</label>
                                     <select name="category" class="form-control select2" id="roles">
+                                        <option label="Choose one">chose one</option>
                                         @foreach ($category as $cat)
                                             <option value="{{ $cat->id }}" >{{ $cat->name }}</option>
                                         @endforeach
@@ -260,11 +261,13 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-10 col-sm-12">
+                                <div class="form-group col-md-12 col-sm-12">
                                     <label for="name">Post Image</label>
                                     <input type="file" class="form-control" id="file-img" name="image" required />
                                 </div>
-                                <div class="form-group col-md-2 col-sm-12 mt-2" id="test-img">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12 mt-2" id="test-img">
                                     
                                 </div>
                             </div>

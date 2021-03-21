@@ -99,7 +99,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $category = Category::latest()->get();
+        return view('backend.pages.post.view',compact('category','post'));
     }
 
     /**

@@ -66,8 +66,12 @@
                                         <td class="text-capitalize">{{ $post->title }}</td>
                                         <td>{{ $post->slug }}</td>
                                         <td>58</td>
-                                        @if (Auth::guard('admin')->user()->can('post.edit') || Auth::guard('post')->user()->can('post.delete'))
+                                        @if (Auth::guard('admin')->user()->can('post.edit') || Auth::guard('post')->user()->can('post.delete') || Auth::guard('post')->user()->can('post.view'))
                                         <td>
+                                            @if (Auth::guard('admin')->user()->can('post.view'))
+                                            <a href="{{ route('admin.post.show',$post->id) }}" class="btn btn-sm btn-primary mr-2" title="Edit"><i class="fa fa-eye"></i></a>
+                                            @endif
+
                                             @if (Auth::guard('admin')->user()->can('post.edit'))
                                             <a href="{{ route('admin.post.edit',$post->id) }}" class="btn btn-sm btn-success mr-2" title="Edit"><i class="fa fa-edit"></i></a>
                                             @endif

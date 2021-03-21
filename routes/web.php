@@ -24,6 +24,10 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/', 'Backend\DashboardController@index')->name('admin.dashboard');
+        Route::get('profile', 'Backend\ProfileController@index')->name('admin.profile');
+        Route::post('profile/update', 'Backend\ProfileController@update')->name('admin.profile.update');
+        Route::get('profile/password', 'Backend\ProfileController@password')->name('admin.profile.password');
+        Route::post('profile/password/change', 'Backend\ProfileController@passwordUpdate')->name('admin.profile.password.update');
         Route::resource('roles', 'Backend\RolesController',['names' => 'admin.roles']);
         Route::resource('admins', 'Backend\AdminsController',['names' => 'admin.admins']);
         Route::resource('category', 'Backend\CategoryController',['names' => 'admin.category']);

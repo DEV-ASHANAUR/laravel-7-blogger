@@ -10,7 +10,7 @@
     <script src="{{ asset('backend') }}/sweetalert/sweetalert.js"></script>
     <link rel="stylesheet" href="{{ asset('backend') }}/sweetalert/sweetalert.css">
     @yield('style')
-    <script src="{{ asset('backend') }}/assets/js/vendor/jquery-3.3.1.min.js"></script>
+    
 </head>
 
 <body>

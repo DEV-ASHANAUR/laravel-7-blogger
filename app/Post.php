@@ -15,4 +15,13 @@ class Post extends Model
     {
         return $this->hasMany('App\Tag', 'PostId', 'id');
     }
+    /**
+     * Get the category that owns the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }
