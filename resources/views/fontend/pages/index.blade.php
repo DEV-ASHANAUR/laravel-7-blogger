@@ -52,7 +52,7 @@
         <div class="item single-cat">
           <img src="{{ asset('storage/post/'.$post->image) }}" alt="" />
           <p class="date">{{ $post->created_at->diffForHumans() }}</p>
-          <h4><a href="#">{{ $post->title }}</a></h4>
+          <h4><a href="{{ route('post',$post->slug) }}">{{ $post->title }}</a></h4>
         </div>
         @endforeach
       </div>
@@ -77,7 +77,7 @@
             <img class="img-fluid" src="{{ asset('storage/post/'.$post->image) }}" alt="">
             <div class="date mt-20 mb-20">{{ $post->created_at->diffForHumans() }}</div>
             <div class="detail">
-              <a href="http://localhost:8000/post/1-air-quality-monitoring-iot-project-with-ubidots-iot-dashboard">
+              <a href="{{ route('post',$post->slug) }}">
                 <h4 class="pb-20">{{ $post->title }}</h4>
               </a>
               <p>

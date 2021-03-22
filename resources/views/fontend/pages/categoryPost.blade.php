@@ -8,7 +8,7 @@
         <div class="container">
           <div class="row justify-content-between align-items-center d-flex">
             <div class="col-lg-8 top-left">
-              <h1 class="text-white mb-20">All Post</h1>
+              <h1 class="text-white mb-20">All Post -> {{ $category->name }}</h1>
               <ul>
                 <li>
                   <a href="index.html">Home</a

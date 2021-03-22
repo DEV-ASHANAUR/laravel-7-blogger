@@ -1,6 +1,8 @@
 <?php
 
+use App\Category;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,21 @@ Auth::routes();
 Route::get('/','fontend\HomeController@index')->name('home.index');
 Route::get('/posts','fontend\HomeController@posts')->name('posts');
 Route::get('/post/{slug}','fontend\HomeController@post')->name('post');
+Route::get('/categories','fontend\HomeController@categories')->name('categories');
+Route::get('/category/{slug}','fontend\HomeController@categoryPost')->name('category.post');
+Route::get('/search','fontend\HomeController@search')->name('search');
+Route::get('/tag/{name}','fontend\HomeController@tagPost')->name('tag.post');
+
+
+// view::composer('fontend.layouts.partials.sidebar', function ($view) {
+//     $categories = Category::all()->take(10);
+//     return $view->with('categories',$categories);
+// });
+
+// View::composer('fontend.layouts.partials.sidebar', function ($view) {
+//     $categories = Category::all()->take(10);
+//     return $view->with('categories', $categories);
+// });
 
 
 

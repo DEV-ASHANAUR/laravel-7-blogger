@@ -13,7 +13,7 @@
           <ul class="navbar-nav scrollable-menu">
             <li><a href="{{ route('home.index') }}">Home</a></li>
             <li><a href="{{ route('posts') }}">Posts</a></li>
-            <li><a href="./categories.html">Categories</a></li>
+            <li><a href="{{ route('categories') }}">Categories</a></li>
             <li><a href="#about">About</a></li>
             <!-- ll
               <li class="dropdown">

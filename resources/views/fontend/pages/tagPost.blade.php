@@ -8,17 +8,17 @@
         <div class="container">
           <div class="row justify-content-between align-items-center d-flex">
             <div class="col-lg-8 top-left">
-              <h1 class="text-white mb-20">All Post</h1>
+              <h1 class="text-white mb-20">Tag Post -> {{ $query }}</h1>
               <ul>
                 <li>
-                  <a href="index.html">Home</a
+                  <a href="{{ route('home.index') }}">Home</a
                   ><span class="lnr lnr-arrow-right"></span>
                 </li>
                 <li>
-                  <a href="category.html">Category</a
+                  <a href="#">Tag</a
                   ><span class="lnr lnr-arrow-right"></span>
                 </li>
-                <li><a href="single.html">Posts</a></li>
+                <li><a href="#">Posts</a></li>
               </ul>
             </div>
           </div>
@@ -36,15 +36,15 @@
                 <div class="top-posts pt-50">
                   <div class="container">
                     <div class="row justify-content-center">
-                     @forelse ($posts as $post)
+                     @forelse ($tags as $tag)
                       <div class="single-posts col-lg-6 col-sm-6">
-                        <img class="img-fluid" src="{{ asset('storage/post/'.$post->image) }}" alt="" />
-                        <div class="date mt-20 mb-20">{{ $post->created_at->diffForHumans() }}</div>
+                        <img class="img-fluid" src="{{ asset('storage/post/'.$tag->post->image) }}" alt="" />
+                        <div class="date mt-20 mb-20">{{ $tag->post->created_at->diffForHumans() }}</div>
                         <div class="detail">
-                          <a href="{{ route('post',$post->slug) }}"
-                            ><h4 class="pb-20">{{ $post->title }}</h4></a>
+                          <a href="{{ route('post',$tag->post->slug) }}"
+                            ><h4 class="pb-20">{{ $tag->post->title }}</h4></a>
                           <p>
-                            {!! Str::limit($post->body, 400, '...') !!}
+                            {!! Str::limit($tag->post->body, 400, '...') !!}
                           </p>
                           <p class="footer pt-20">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -61,7 +61,7 @@
                       <h3>No post availabe</h3>
                       @endforelse
                       <div class="justify-content-center d-flex mt-5">
-                        {{ $posts->links()}}
+                        {{ $tags->appends(Request::all())->links()}}
                       </div>
                       {{-- <div class="single-posts col-lg-6 col-sm-6">
                         <img class="img-fluid" src="img/asset/p2.jpg" alt="" />

@@ -27,7 +27,12 @@ class Post extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    
+    // Define Scope
+    // published()
+    public function scopePublished($query)
+    {
+        return $query->where('status', 1);
+    }
     /**
      * Get the user that owns the Post
      *
