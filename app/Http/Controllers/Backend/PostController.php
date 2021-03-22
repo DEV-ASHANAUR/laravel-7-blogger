@@ -45,7 +45,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|min:5|max:150|unique:posts',
+            'title' => 'required|min:5|max:200|unique:posts',
             'category' => 'required',
             'tags' => 'required',
             'body' => 'required',
@@ -64,7 +64,7 @@ class PostController extends Controller
             Storage::disk('public')->makeDirectory('post');
         }
 
-        $postImage = Image::make($image)->resize(752, null, function ($constraint) {
+        $postImage = Image::make($image)->resize(752, 501, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->stream();
@@ -127,7 +127,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|max:100|min:5|unique:posts,title,' . $id,
+            'title' => 'required|max:200|min:5|unique:posts,title,' . $id,
             'category' => 'required',
             'tags' => 'required',
             'body' => 'required',
@@ -153,7 +153,7 @@ class PostController extends Controller
                 Storage::disk('public')->delete('post/' . $post->image);
             }
 
-            $postImage = Image::make($image)->resize(752, null, function ($constraint) {
+            $postImage = Image::make($image)->resize(752, 501, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->stream();

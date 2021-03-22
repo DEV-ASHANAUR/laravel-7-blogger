@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\Admin\ResetPasswordNotification;
+use App\Post;
 
 class Admin extends Authenticatable
 {
@@ -80,4 +81,5 @@ class Admin extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
 }

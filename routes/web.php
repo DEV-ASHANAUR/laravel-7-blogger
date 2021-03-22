@@ -19,7 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/','fontend\HomeController@index')->name('home.index');
+Route::get('/posts','fontend\HomeController@posts')->name('posts');
+Route::get('/post/{slug}','fontend\HomeController@post')->name('post');
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {

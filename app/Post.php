@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Admin;
+use phpDocumentor\Reflection\Types\Null_;
 
 class Post extends Model
 {
@@ -24,4 +26,21 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    
+    /**
+     * Get the user that owns the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'admin_id', 'id');
+    }
+    public function user() 
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+      
 }
