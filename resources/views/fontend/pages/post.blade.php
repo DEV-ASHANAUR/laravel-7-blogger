@@ -187,13 +187,15 @@
                                 </div>
                               </div>
                               <div class="">
+                                @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
                                 <button class="btn-reply text-uppercase" id="reply-btn" 
-                                  onclick="showReplyForm('1','Emilly Blunt')">reply 1</button
+                                  onclick="showReplyForm('{{ $comment->id }}','{{ (!empty($comment->user_id))?$comment->user->name:$comment->admin->name }}')">reply</button
                                 >
+                                @endif
                               </div>
                             </div>
                           </div>
-                          @endforeach
+                          
                           {{-- <div class="comment-list left-padding">
                             <div
                               class="single-comment justify-content-between d-flex"
@@ -216,8 +218,8 @@
                                 >
                               </div>
                             </div>
-                          </div>
-                          <div class="comment-list left-padding" id="reply-form-1" style="display: none">
+                          </div>  --}}
+                          <div class="comment-list left-padding" id="reply-form-{{ $comment->id }}" style="display: none">
                             <div
                               class="single-comment justify-content-between d-flex"
                             >
@@ -226,20 +228,31 @@
                                   <img src="img/asset/c2.jpg" alt="" />
                                 </div>
                                 <div class="desc">
-                                  <h5><a href="#">Goerge Stepphen</a></h5>
+                                  <h5>
+                                    
+                                    
+                                    @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
+                                      @if (Auth::guard('admin')->check())
+                                          {{ Auth::guard('admin')->user()->name }}
+                                      @else
+                                        {{ Auth::guard('web')->user()->name }}
+                                      @endif
+                                    @endif
+                                    
+                                  </h5>
                                   <p class="date">December 4, 2017 at 3:12 pm</p>
                                   <div class="row flex-row d-flex">
                                   <form action="#" method="POST">
                                     <div class="col-lg-12">
                                       <textarea
-                                        id="reply-form-1-text"
+                                        id="reply-form-{{ $comment->id }}-text"
                                         cols="60"
                                         rows="2"
                                         class="form-control mb-10"
-                                        name="message"
+                                        name="reply"
                                         placeholder="Messege"
                                         onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Messege'"
+                                        onblur="this.placeholder = 'reply'"
                                         required=""
                                       ></textarea>
                                     </div>
@@ -249,7 +262,8 @@
                                 </div>
                               </div>
                             </div>
-                          </div> --}}
+                          </div>
+                          @endforeach
                         </div>
                         {{-- <!-- 2nd Comment -->
                         <div class="comment">
@@ -348,7 +362,7 @@
                           <form action="{{ route('comment.store',$post->id) }}" method="POST">
                             @csrf
                             <textarea
-                            class="form-control mb-10"
+                            class="form-control mb-10 example1"
                             name="comment"
                             id="example1"
                             placeholder="Enter Comment.."
@@ -385,8 +399,23 @@
 
 @section('script')
     <script>
+      function showReplyForm(commentId,user) {
+      var x = document.getElementById(`reply-form-${commentId}`);
+      var input = document.getElementById(`reply-form-${commentId}-text`);
+
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        input.innerText=`@${user} `;
+
+      } else {
+        x.style.display = "none";
+      }
+    }
+    </script>
+    //emojioneArea
+    <script>
       $(document).ready(function() {
-        $("#example1").emojioneArea();
+        $(".example1").emojioneArea();
       });
     </script>
 @endsection

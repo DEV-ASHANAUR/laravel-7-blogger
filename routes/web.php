@@ -29,6 +29,7 @@ Route::get('/category/{slug}','fontend\HomeController@categoryPost')->name('cate
 Route::get('/search','fontend\HomeController@search')->name('search');
 Route::get('/tag/{name}','fontend\HomeController@tagPost')->name('tag.post');
 Route::post('/comment/{post}', 'fontend\CommentController@store')->name('comment.store');
+Route::post('/comment-reply/{comment}', 'fontend\ReplyController@store')->name('reply.store');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

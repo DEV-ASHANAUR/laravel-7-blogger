@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin;
 use App\User;
-use App\CommentReply;
+use App\Comment;
 
-class Comment extends Model
+class CommentReply extends Model
 {
     /**
      * guarded
@@ -34,23 +34,13 @@ class Comment extends Model
     {
         return $this->belongsTo(Admin::class, 'admin_id', 'id');
     }
-
     /**
-     * Get the user that owns the Comment
+     * Get the comment that owns the Comment
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post()
+    public function comment()
     {
-        return $this->belongsTo('App\Post');
-    }
-    /**
-     * Get all of the replies for the Comment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function replies()
-    {
-        return $this->hasMany('App\CommentReply');
+        return $this->belongsTo('App\Comment');
     }
 }
