@@ -12,6 +12,9 @@
 @section('category')
     in
 @endsection
+@section('all-category')
+    active
+@endsection
 @section('main-content')
     <!-- page title area start -->
     <div class="page-title-area">

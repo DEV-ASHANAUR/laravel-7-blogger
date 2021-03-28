@@ -28,18 +28,7 @@ Route::get('/categories','fontend\HomeController@categories')->name('categories'
 Route::get('/category/{slug}','fontend\HomeController@categoryPost')->name('category.post');
 Route::get('/search','fontend\HomeController@search')->name('search');
 Route::get('/tag/{name}','fontend\HomeController@tagPost')->name('tag.post');
-
-
-// view::composer('fontend.layouts.partials.sidebar', function ($view) {
-//     $categories = Category::all()->take(10);
-//     return $view->with('categories',$categories);
-// });
-
-// View::composer('fontend.layouts.partials.sidebar', function ($view) {
-//     $categories = Category::all()->take(10);
-//     return $view->with('categories', $categories);
-// });
-
+Route::post('/comment/{post}', 'fontend\CommentController@store')->name('comment.store');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -56,6 +45,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('admins', 'Backend\AdminsController',['names' => 'admin.admins']);
         Route::resource('category', 'Backend\CategoryController',['names' => 'admin.category']);
         Route::resource('post', 'Backend\PostController',['names' => 'admin.post']);
+        Route::get('/comment','Backend\CommentController@index')->name('comment.index');
+        Route::delete('/comment/{id}', 'Backend\CommentController@destroy')->name('comment.destroy');
     });
     
 

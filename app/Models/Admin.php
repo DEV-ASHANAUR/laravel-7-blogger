@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\Admin\ResetPasswordNotification;
 use App\Post;
+use App\Comment;
 
 class Admin extends Authenticatable
 {
@@ -80,6 +81,11 @@ class Admin extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
     }
 
 }

@@ -43,7 +43,16 @@
         <div class="menu-content pb-70 col-lg-8">
           <div class="title text-center">
             <h1 class="mb-10">Latest Posts from all categories</h1>
-            <p>Find the Latest Post from all category.</p>
+            <p>Find the Latest Post from all category. </p>
+            {{-- <p>
+              @auth
+                 @if (Auth::guard('admin')->check())
+                     admin : {{ Auth::guard('admin')->user()->id }}
+                 @else
+                    User :  {{ Auth::user()->id }}
+                 @endif 
+              @endauth
+            </p> --}}
           </div>
         </div>
       </div>
@@ -279,7 +288,7 @@
             Currently Studing GEOSPATIAL SCIENCE and learning <span class="c1">GIS Web Applications Development</span>.
           </p>
           <br>
-          <h4>Email: <span style="font-size: medium; font-weight: lighter;">subhadipghorui105@gmail.com</span></h4>
+          <h4>Email: <span style="font-size: medium; font-weight: lighter;">ashanour009@gmail.com</span></h4>
           <br>
           <div class="col-md-12 d-flex justify-content-center py-3 mt-2">
             <a href="https://subhadipghorui.github.io" class="genric-btn info circle arrow mr-md-auto"
@@ -290,14 +299,14 @@
           <div class="row">
             <div class="single-team">
               <div class="thumb">
-                <img class="img-fluid w-75 mx-auto" src="{{ asset('fontend') }}/./img/admin.png" alt="admin">
+                <img class="img-fluid w-75 mx-auto" src="{{ asset('fontend') }}/./img/ashanur.jpg" alt="admin">
                 <div class="align-items-center justify-content-center d-flex">
                   <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
                   <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
                 </div>
               </div>
               <div class="meta-text mt-30 text-center">
-                <h4>Subhadip Ghorui</h4>
+                <h4>Md.Ashanaur Rahman</h4>
                 <p>Creator</p>
               </div>
             </div>

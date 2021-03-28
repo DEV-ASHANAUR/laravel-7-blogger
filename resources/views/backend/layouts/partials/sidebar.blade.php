@@ -82,6 +82,16 @@
                     </li>
                     @endif
                     {{-- admin end --}}
+                    {{-- category --}}
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                                Comment
+                            </span></a>
+                        <ul class="collapse @yield('comment')">
+                            <li class="@yield('all-comment')"><a href="{{ route('comment.index') }}">All Comment</a></li>   
+                        </ul>
+                    </li>
+                    {{-- category end --}}
                 </ul>
             </nav>
         </div>

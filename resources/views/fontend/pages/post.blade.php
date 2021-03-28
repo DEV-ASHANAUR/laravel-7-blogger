@@ -65,13 +65,13 @@
                   <div class="tags">
                     <ul>
                       @foreach ($post->tags as $tag)
-                      <li><a href="#">{{ $tag->name }}</a></li>
+                      <li><a href="{{ route('tag.post',$tag->name) }}">{{ $tag->name }}</a></li>
                       @endforeach
                     </ul>
                   </div>
                   <div class="tags">
                     <ul>
-                      <li><a href="#">Category : {{ $post->category->name }}</a></li>
+                      <li><a href="{{ route('category.post',$post->category->slug) }}">Category : {{ $post->category->name }}</a></li>
                     </ul>
                   </div>
                   <div class="single-post-content">
@@ -116,7 +116,7 @@
                     </div>
                   </div>
   
-                  <!-- Start nav Area -->
+                  {{-- <!-- Start nav Area -->
                   <section class="nav-area pt-50 pb-100">
                     <div class="container">
                       <div class="row justify-content-between">
@@ -149,29 +149,40 @@
                       </div>
                     </div>
                   </section>
-                  <!-- End nav Area -->
+                  <!-- End nav Area --> --}}
   
                   <!-- Start comment-sec Area -->
                   <section class="comment-sec-area pt-80 pb-80">
                     <div class="container">
                       <div class="row flex-column">
-                        <h5 class="text-uppercase pb-80">05 Comments</h5>
+                        <h5 class="text-uppercase pb-80">{{ $post->comments->count() }} Comments</h5>
                         <br />
                         <!-- Frist Comment -->
                         <div class="comment">
+                          @foreach ($post->comments as $comment)
                           <div class="comment-list">
                             <div
                               class="single-comment justify-content-between d-flex"
                             >
                               <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                  <img src="img/asset/c1.jpg" alt="" />
+                                  {{-- <img src="{{ asset('fontend') }}/img/default.jpg" width="40px" height="40px" alt="" /> --}}
+
+                                  @if (!empty($comment->user_id))
+                                    <img src="{{ (!empty($comment->user->image))?(asset('storage/profile/'.$comment->user->image)):(asset('fontend/img/default.jpg')) }}" width="40px" height="40px" alt="" />
+                                  @else
+                                    <img src="{{ (!empty($comment->admin->image))?(asset('storage/profile/'.$comment->admin->image)):(asset('fontend/img/default.jpg')) }}" width="40px" height="40px" alt="" />
+                                  @endif
                                 </div>
                                 <div class="desc">
-                                  <h5><a href="#">Emilly Blunt</a></h5>
-                                  <p class="date">December 4, 2017 at 3:12 pm</p>
-                                  <p class="comment">
-                                    Never say goodbye till the end comes!
+                                  @if (!empty($comment->user_id))
+                                      <h5 class="text-capitalize">{{ $comment->user->name }}</h5>
+                                  @else
+                                      <h5 class="text-capitalize">{{ $comment->admin->name }}</h5>
+                                  @endif
+                                  <p class="date">{{ $comment->created_at->format('D, d M Y H:i') }}</p>
+                                  <p class="comment text-capitalize">
+                                    {{ $comment->comment }}
                                   </p>
                                 </div>
                               </div>
@@ -182,7 +193,8 @@
                               </div>
                             </div>
                           </div>
-                          <div class="comment-list left-padding">
+                          @endforeach
+                          {{-- <div class="comment-list left-padding">
                             <div
                               class="single-comment justify-content-between d-flex"
                             >
@@ -237,9 +249,9 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> --}}
                         </div>
-                        <!-- 2nd Comment -->
+                        {{-- <!-- 2nd Comment -->
                         <div class="comment">
                           <div class="comment-list">
                             <div
@@ -320,31 +332,43 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> --}}
                       </div>
                     </div>
                   </section>
                   <!-- End comment-sec Area -->
   
                   <!-- Start commentform Area -->
+                  @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
                   <section class="commentform-area pb-120 pt-80 mb-100">
                     <div class="container">
-                      <h5 class="text-uppercas pb-50">Leave a Reply</h5>
+                      <h5 class="text-uppercas pb-50">Leave a Comment</h5>
                       <div class="row flex-row d-flex">
                         <div class="col-lg-12">
-                          <textarea
+                          <form action="{{ route('comment.store',$post->id) }}" method="POST">
+                            @csrf
+                            <textarea
                             class="form-control mb-10"
-                            name="message"
-                            placeholder="Messege"
+                            name="comment"
+                            id="example1"
+                            placeholder="Enter Comment.."
                             onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Messege'"
+                            onblur="this.placeholder = 'Enter Comment..'"
                             required=""
                           ></textarea>
-                          <a class="primary-btn mt-20" href="#">Comment</a>
+                            <button type="submit" class="primary-btn mt-20">Comment</button>
+                          </form>
                         </div>
                       </div>
                     </div>
                   </section>
+                  @else
+                  <div class="container mb-4 mt-4">
+                    <h4>Please Sign in to post comments - <a href="{{route('login')}}">Sing in</a> or <a href="{{route('register')}}">Register</a></h4>
+                  </div>
+                  @endif
+
+                  
                   <!-- End commentform Area -->
                 </div>
               </div>
@@ -357,4 +381,12 @@
         <!-- End post Area -->
       </div>
       <!-- End post Area -->
+@endsection
+
+@section('script')
+    <script>
+      $(document).ready(function() {
+        $("#example1").emojioneArea();
+      });
+    </script>
 @endsection

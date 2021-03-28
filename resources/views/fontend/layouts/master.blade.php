@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="{{ asset('fontend') }}/css/bootstrap.css" />
   <link rel="stylesheet" href="{{ asset('fontend') }}/css/owl.carousel.css" />
   <link rel="stylesheet" href="{{ asset('fontend') }}/css/main.css" />
+  <link rel="stylesheet" href="{{ asset('fontend') }}/emoji/emojionearea.css" />
   <style>
     .menu1 {
       /* border: 1px solid #333; */
@@ -142,6 +143,8 @@
   <script src="{{ asset('fontend') }}/js/jquery.magnific-popup.min.js"></script>
   <script src="{{ asset('fontend') }}/js/jquery.sticky.js"></script>
   <script src="{{ asset('fontend') }}/js/main.js"></script>
+  <script src="{{ asset('fontend') }}/emoji/emojionearea.min.js"></script>
+  @yield('script')
 </body>
 
 </html>
