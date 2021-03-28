@@ -48,6 +48,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('post', 'Backend\PostController',['names' => 'admin.post']);
         Route::get('/comment','Backend\CommentController@index')->name('comment.index');
         Route::delete('/comment/{id}', 'Backend\CommentController@destroy')->name('comment.destroy');
+        Route::get('/comment-reply','Backend\ReplyCommentController@index')->name('comment.reply');
+        Route::delete('/comment-reply/{id}', 'Backend\ReplyCommentController@destroy')->name('reply.destroy');
     });
     
 

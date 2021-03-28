@@ -195,30 +195,49 @@
                               </div>
                             </div>
                           </div>
+                      
+                          @forelse ($comment->replies as $reply)
                           
-                          {{-- <div class="comment-list left-padding">
+                          <div class="comment-list left-padding">
                             <div
                               class="single-comment justify-content-between d-flex"
                             >
+
                               <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                  <img src="img/asset/c3.jpg" alt="" />
+                                  @if (!empty($reply->user_id))
+                                    <img src="{{ (!empty($reply->user->image))?(asset('storage/profile/'.$reply->user->image)):(asset('fontend/img/default.jpg')) }}" width="40px" height="40px" alt="" />
+                                  @else
+                                    <img src="{{ (!empty($reply->admin->image))?(asset('storage/profile/'.$reply->admin->image)):(asset('fontend/img/default.jpg')) }}" width="40px" height="40px" alt="" />
+                                  @endif
                                 </div>
                                 <div class="desc">
-                                  <h5><a href="#">Sally Sally</a></h5>
-                                  <p class="date">December 4, 2017 at 3:12 pm</p>
+                                  @if (!empty($reply->user_id))
+                                      <h5 class="text-capitalize">{{ $reply->user->name }}</h5>
+                                  @else
+                                      <h5 class="text-capitalize">{{ $reply->admin->name }}</h5>
+                                  @endif
+                                  <p class="date">{{ $reply->created_at->format('D, d M Y H:i') }}</p>
                                   <p class="comment">
-                                    @Emilly Blunt Never say goodbye till the end comes!
+                                    {{ $reply->reply }}
                                   </p>
                                 </div>
                               </div>
+
                               <div class="">
+                                @if (Auth::guard('admin')->check() || Auth::guard('web')->check())
                                 <button class="btn-reply text-uppercase" id="reply-btn" 
-                                  onclick="showReplyForm('1','Sally Sally')">reply 1</button
+                                  onclick="showReplyForm('{{ $comment->id }}','{{ (!empty($reply->user_id))?$reply->user->name:$reply->admin->name }}')">reply</button
                                 >
+                                @endif
                               </div>
+
                             </div>
-                          </div>  --}}
+                          </div> 
+                              
+                          @empty
+                              
+                          @endforelse
                           <div class="comment-list left-padding" id="reply-form-{{ $comment->id }}" style="display: none">
                             <div
                               class="single-comment justify-content-between d-flex"
@@ -242,7 +261,8 @@
                                   </h5>
                                   <p class="date">December 4, 2017 at 3:12 pm</p>
                                   <div class="row flex-row d-flex">
-                                  <form action="#" method="POST">
+                                  <form action="{{ route('reply.store',$comment->id) }}" method="POST">
+                                    @csrf
                                     <div class="col-lg-12">
                                       <textarea
                                         id="reply-form-{{ $comment->id }}-text"

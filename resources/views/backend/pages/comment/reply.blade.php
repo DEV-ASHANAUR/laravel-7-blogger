@@ -12,7 +12,7 @@
 @section('comment')
     in
 @endsection
-@section('all-comment')
+@section('reply-comment')
     active
 @endsection
 @section('main-content')
@@ -21,10 +21,10 @@
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="breadcrumbs-area clearfix">
-                    <h4 class="page-title pull-left">Comment List</h4>
+                    <h4 class="page-title pull-left">Comment reply List</h4>
                     <ul class="breadcrumbs pull-left">
                         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li><span>Comment List</span></li>
+                        <li><span>Comment reply List</span></li>
                     </ul>
                 </div>
             </div>
@@ -40,39 +40,41 @@
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.message')
-                        <h4 class="header-title float-left">Comment List</h4>
+                        <h4 class="header-title float-left">Comment reply List</h4>
                         <div class="data-tables">
                             <table id="dataTable" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>
-                                        <th width="10%">SL No</th>
-                                        <th width="20%">Comment</th>
-                                        <th width="10%">User</th>
+                                        <th width="5%">SL No</th>
+                                        <th width="10">Replied Comment</th>
+                                        <th width="10">To Comment</th>
+                                        <th width="10">Relied User</th>
                                         <th width="30%">Post</th>
                                         <th width="20%">Created At</th>
-                                        <th width="10%">Action</th>
+                                        <th width="5%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($comments as $key => $comment)
+                                    @foreach ($reply as $key => $replies)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
-                                        <td class="text-capitalize">{{ $comment->comment }}</td>
+                                        <td class="text-capitalize">{{ $replies->reply }}</td>
+                                        <td class="text-capitalize">{{ $replies->comment->comment }}</td>
                                         <td>
-                                            @if (!empty($comment->user_id))
-                                                {{ $comment->user->name }}
+                                            @if (!empty($replies->user_id))
+                                                {{ $replies->user->name }}
                                             @else
-                                                {{ $comment->admin->name }}
+                                                {{ $replies->admin->name }}
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('post',$comment->post->slug) }}" target="_blank">{{ $comment->post->title }}</a>
+                                            <a href="{{ route('post',$replies->comment->post->slug) }}" target="_blank">{{ $replies->comment->post->title }}</a>
                                             </td>
-                                        <td>{{ $comment->created_at->diffForHumans() }}</td>
+                                        <td>{{ $replies->created_at->diffForHumans() }}</td>
                                        
                                         <td>
                                            
-                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-{{ $comment->id }}"><i class="fa fa-trash"></i>
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-{{ $replies->id }}"><i class="fa fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -83,27 +85,27 @@
                     </div>
                     {{-- --------modal start------------ --}}
                     
-                    @foreach ($comments as $key => $comment)
+                    @foreach ($reply as $key => $replies)
                     {{-- category category modal start --}}
                     
-                    <div class="modal fade bd-example-modal-sm" id="delete-{{ $comment->id }}">
+                    <div class="modal fade bd-example-modal-sm" id="delete-{{ $replies->id }}">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Delete Comment</h5>
+                                    <h5 class="modal-title">Delete Reply</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                 </div>
                                 <div class="modal-body">
                                     <p>
-                                        Are You Sure ! Delete This Comment?
+                                        Are You Sure ! Delete This Reply?
                                     </p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary btn-flat" data-dismiss="modal">Cancle</button>
 
                                     <button type="button" class="btn btn-danger btn-flat" onclick="event.preventDefault();
-                                    document.getElementById('deleteCom-{{$comment->id}}').submit();">Delete</button>
-                                    <form action="{{ route('comment.destroy',$comment->id) }}" style="display: none" id="deleteCom-{{$comment->id}}" method="POST">
+                                    document.getElementById('deleteCom-{{$replies->id}}').submit();">Delete</button>
+                                    <form action="{{ route('reply.destroy',$replies->id) }}" style="display: none" id="deleteCom-{{$replies->id}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                     </form>

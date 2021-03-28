@@ -88,7 +88,9 @@
                                 Comment
                             </span></a>
                         <ul class="collapse @yield('comment')">
-                            <li class="@yield('all-comment')"><a href="{{ route('comment.index') }}">All Comment</a></li>   
+                            <li class="@yield('all-comment')"><a href="{{ route('comment.index') }}">All Comment</a></li>  
+
+                            <li class="@yield('reply-comment')"><a href="{{ route('comment.reply') }}">Reply Comment</a></li>  
                         </ul>
                     </li>
                     {{-- category end --}}
