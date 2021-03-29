@@ -40,6 +40,7 @@
       color: #007bff;
     }
   </style>
+  @yield('style')
 </head>
 
 <body>

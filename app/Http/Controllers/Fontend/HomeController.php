@@ -49,16 +49,15 @@ class HomeController extends Controller
         return view('fontend.pages.tagPost',compact('tags','query'));
     }
 
-    public function likePost($post){
+    public function likePost(Request $request){
         $user = Auth::user();
-        $likePosts = $user->likedPost()->where('post_id',$post)->count();
+        $likePosts = $user->likedPost()->where('post_id',$request->post)->count();
         if($likePosts == 0){
-            $user->likedPost()->attach($post);
+            $user->likedPost()->attach($request->post);
         }else{
-            $user->likedPost()->detach($post);
+            $user->likedPost()->detach($request->post);
         }
-        return redirect()->back();
-         
+        return true; 
     }
 
     //get like by ajax request
@@ -71,14 +70,13 @@ class HomeController extends Controller
         if(Auth::guard('web')->check()){
             $user = Auth::user();
             return $likePosts = $user->likedPost()->where('post_id',$request->post_id)->count();
-            // if($likePosts == 0){
-            //     return false;
-            // }else{
-            //     return true;
-            // }
-
+            if($likePosts == 0){
+                return false;
+            }else{
+                return true;
+            }
         }else{
-            return 'not';
+            return 'please login!';
         }
         
     }

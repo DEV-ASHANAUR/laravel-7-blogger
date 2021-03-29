@@ -98,10 +98,10 @@
               <ul class="d-flex space-around">
                 <li><a href="javascript:void(0);"
                     onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i
-                      class="fa fa-heart-o" aria-hidden="true"></i><span> 0</span></a></li>
+                      class="fa fa-heart-o" aria-hidden="true"></i><span> {{ $post->likedUsers->count() }}</span></a></li>
 
 
-                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> 0</span></li>
+                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> {{ $post->comments->count() }}</span></li>
                 <li><i class="fa fa-eye" aria-hidden="true"></i> <span>5</span></li>
               </ul>
 

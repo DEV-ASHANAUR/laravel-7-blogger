@@ -2,6 +2,13 @@
 @section('title')
     Post Page
 @endsection
+@section('style')
+    <style>
+      .red{
+        color:red!important;
+      }
+    </style>
+@endsection
 @section('content')
     <!-- Start top-section Area -->
     <section class="top-section-area section-gap">
@@ -87,17 +94,21 @@
                           <i class="fa fa-heart-o" aria-hidden="true"></i>
                           {{-- {{ $post->likedUsers->count() }} people like this --}}
                           <span id="total_like"></span> people like this
-                        @else  
-                          <a href="#" onclick="document.getElementById('like-from-{{ $post->id }}').submit();"><i class="fa fa-heart" aria-hidden="true" style="color: {{ Auth::user()->likedPost()->where('post_id',$post->id)->count() > 0?'red':'' }}"></i>
+                        @else
+                          <a href="#" class="likebtn">
+                            <i class="fa fa-heart" aria-hidden="true" ></i>
+                          </a>
+                          <span id="total_like"></span> people like this
+                          {{-- <a href="#" onclick="document.getElementById('like-from-{{ $post->id }}').submit();"><i class="fa fa-heart" aria-hidden="true" style="color: {{ Auth::user()->likedPost()->where('post_id',$post->id)->count() > 0?'red':'' }}"></i>
                           </a>
                           {{ $post->likedUsers->count() }} people like this
                           <form action="{{ route('post.like',$post->id) }}" id="like-from-{{ $post->id }}" method="POST" style="display:none">
                           @csrf
-                          </form>
+                          </form> --}}
                         @endguest
                       </div>
                       <div class="col-lg-4 single-b-wrap col-md-12">
-                        <i class="fa fa-comment-o" aria-hidden="true"></i> 06
+                        <i class="fa fa-comment-o" aria-hidden="true"></i> {{ $post->comments->count() }}
                         comments
                       </div>
                       <div class="col-lg-4 single-b-wrap col-md-12">
@@ -457,12 +468,30 @@
             type:"GET",
             data:{post_id:post_id},
             success:function(data){
-              console.log("fsdgds" + data);
-              // $('#total_like').html(data);
+              if(data == 1){
+                $('.likebtn i').addClass('red');
+              }else{
+                $('.likebtn i').removeClass('red');
+              }
             }
           });
-          
         }
+        //script for like and unlike
+        $( ".likebtn" ).click(function( event ) {
+          event.preventDefault();
+          post_id = $('#post_id').val();
+          // alert(post_id);
+          $.ajax({
+            url:"{{route('post.like')}}",
+            type:"POST",
+            data:{post:post_id},
+            success:function(data){
+              checkUser();
+              getLike();
+            }
+          });
+        });
+        
         checkUser();
         getLike();
 
