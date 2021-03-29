@@ -82,8 +82,19 @@
                   <div class="bottom-wrapper">
                     <div class="row">
                       <div class="col-lg-4 single-b-wrap col-md-12">
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        lily and 4 people like this
+                        <input type="hidden" id="post_id" value="{{ $post->id }}">
+                        @guest
+                          <i class="fa fa-heart-o" aria-hidden="true"></i>
+                          {{-- {{ $post->likedUsers->count() }} people like this --}}
+                          <span id="total_like"></span> people like this
+                        @else  
+                          <a href="#" onclick="document.getElementById('like-from-{{ $post->id }}').submit();"><i class="fa fa-heart" aria-hidden="true" style="color: {{ Auth::user()->likedPost()->where('post_id',$post->id)->count() > 0?'red':'' }}"></i>
+                          </a>
+                          {{ $post->likedUsers->count() }} people like this
+                          <form action="{{ route('post.like',$post->id) }}" id="like-from-{{ $post->id }}" method="POST" style="display:none">
+                          @csrf
+                          </form>
+                        @endguest
                       </div>
                       <div class="col-lg-4 single-b-wrap col-md-12">
                         <i class="fa fa-comment-o" aria-hidden="true"></i> 06
@@ -418,6 +429,44 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript">
+      $.ajaxSetup({
+          headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        // count all like
+        function getLike(){
+          post_id = $('#post_id').val();
+          $.ajax({
+            url:"{{route('get.like')}}",
+            type:"GET",
+            data:{post_id:post_id},
+            success:function(data){
+              // alert(data);
+              $('#total_like').html(data);
+            }
+          });
+          
+        }
+        // check user like or not
+        function checkUser(){
+          post_id = $('#post_id').val();
+          $.ajax({
+            url:"{{route('check.like')}}",
+            type:"GET",
+            data:{post_id:post_id},
+            success:function(data){
+              console.log("fsdgds" + data);
+              // $('#total_like').html(data);
+            }
+          });
+          
+        }
+        checkUser();
+        getLike();
+
+    </script>
     <script>
       function showReplyForm(commentId,user) {
       var x = document.getElementById(`reply-form-${commentId}`);

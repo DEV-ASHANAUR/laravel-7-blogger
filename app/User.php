@@ -75,5 +75,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+    /**
+     * The post that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likedPost()
+    {
+        return $this->belongsToMany('App\Post')->withTimestamps();
+    }
+
 
 }

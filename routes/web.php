@@ -30,7 +30,10 @@ Route::get('/search','fontend\HomeController@search')->name('search');
 Route::get('/tag/{name}','fontend\HomeController@tagPost')->name('tag.post');
 Route::post('/comment/{post}', 'fontend\CommentController@store')->name('comment.store');
 Route::post('/comment-reply/{comment}', 'fontend\ReplyController@store')->name('reply.store');
-
+Route::post('/like-post/{post}', 'fontend\HomeController@likePost')->name('post.like');
+//ajax
+Route::get('/get-like', 'fontend\HomeController@getLike')->name('get.like');
+Route::get('/check-like-not', 'fontend\HomeController@checkLike')->name('check.like');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

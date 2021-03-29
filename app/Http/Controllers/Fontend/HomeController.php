@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -47,4 +48,39 @@ class HomeController extends Controller
         $tags->appends(['search'=>$name]);
         return view('fontend.pages.tagPost',compact('tags','query'));
     }
+
+    public function likePost($post){
+        $user = Auth::user();
+        $likePosts = $user->likedPost()->where('post_id',$post)->count();
+        if($likePosts == 0){
+            $user->likedPost()->attach($post);
+        }else{
+            $user->likedPost()->detach($post);
+        }
+        return redirect()->back();
+         
+    }
+
+    //get like by ajax request
+    public function getLike(Request $request){
+        $post = Post::where('id',$request->post_id)->first();
+        return $post->likedUsers->count();
+    }
+    //check like
+    public function checkLike(Request $request){
+        if(Auth::guard('web')->check()){
+            $user = Auth::user();
+            return $likePosts = $user->likedPost()->where('post_id',$request->post_id)->count();
+            // if($likePosts == 0){
+            //     return false;
+            // }else{
+            //     return true;
+            // }
+
+        }else{
+            return 'not';
+        }
+        
+    }
+    
 }
