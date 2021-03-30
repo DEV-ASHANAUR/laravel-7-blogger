@@ -49,6 +49,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('admins', 'Backend\AdminsController',['names' => 'admin.admins']);
         Route::resource('category', 'Backend\CategoryController',['names' => 'admin.category']);
         Route::resource('post', 'Backend\PostController',['names' => 'admin.post']);
+        Route::get('/post-liked-users/{post}', 'Backend\PostController@likedUsers')->name('post.like.users');
         Route::get('/comment','Backend\CommentController@index')->name('comment.index');
         Route::delete('/comment/{id}', 'Backend\CommentController@destroy')->name('comment.destroy');
         Route::get('/comment-reply','Backend\ReplyCommentController@index')->name('comment.reply');

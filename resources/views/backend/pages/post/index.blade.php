@@ -50,11 +50,12 @@
                             <table id="dataTable" class="text-center">
                                 <thead class="bg-light text-capitalize">
                                     <tr>
-                                        <th width="10%">SL No</th>
+                                        <th width="5%">SL No</th>
                                         <th width="20%">Title</th>
-                                        <th width="10%">Slug</th>
-                                        <th width="40%">Views & Likes</th>
+                                        <th width="30%">Slug</th>
+                                        <th width="20%">Views & Likes</th>
                                         @if (Auth::guard('admin')->user()->can('post.edit') || Auth::guard('post')->user()->can('post.delete'))
+                                        <th width="5%">Created At</th>
                                         <th width="20%">Action</th>
                                         @endif
                                     </tr>
@@ -65,15 +66,22 @@
                                         <td>{{ $key+1 }}</td>
                                         <td class="text-capitalize">{{ $post->title }}</td>
                                         <td>{{ $post->slug }}</td>
-                                        <td>58</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> {{ $post->view_count }}</button>
+
+                                            <a href="{{ route('post.like.users',$post->id) }}" class="btn btn-success btn-sm"><i class="fa fa-heart"></i> {{ $post->likedUsers->count() }}</a>
+                                        </td>
+                                        <td>
+                                            {{ $post->created_at->diffForHumans() }}
+                                        </td>
                                         @if (Auth::guard('admin')->user()->can('post.edit') || Auth::guard('post')->user()->can('post.delete') || Auth::guard('post')->user()->can('post.view'))
                                         <td>
                                             @if (Auth::guard('admin')->user()->can('post.view'))
-                                            <a href="{{ route('admin.post.show',$post->id) }}" class="btn btn-sm btn-primary mr-2" title="Edit"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('admin.post.show',$post->id) }}" class="btn btn-sm btn-primary mr-1" title="Edit"><i class="fa fa-eye"></i></a>
                                             @endif
 
                                             @if (Auth::guard('admin')->user()->can('post.edit'))
-                                            <a href="{{ route('admin.post.edit',$post->id) }}" class="btn btn-sm btn-success mr-2" title="Edit"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('admin.post.edit',$post->id) }}" class="btn btn-sm btn-success mr-1" title="Edit"><i class="fa fa-edit"></i></a>
                                             @endif
 
                                             @if (Auth::guard('admin')->user()->can('post.delete'))
@@ -124,5 +132,5 @@
     </div>
 @endsection
 @section('script')
-
+    
 @endsection

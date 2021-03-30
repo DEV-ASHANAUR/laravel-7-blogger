@@ -88,10 +88,10 @@
                   </div>
                   <div class="bottom-wrapper">
                     <div class="row">
-                      <div class="col-lg-4 single-b-wrap col-md-12">
+                      <div class="col-lg-3 single-b-wrap col-md-12">
                         <input type="hidden" id="post_id" value="{{ $post->id }}">
                         @guest
-                          <i class="fa fa-heart-o" aria-hidden="true"></i>
+                          <a href="#" class="likeoff"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                           {{-- {{ $post->likedUsers->count() }} people like this --}}
                           <span id="total_like"></span> people like this
                         @else
@@ -107,11 +107,15 @@
                           </form> --}}
                         @endguest
                       </div>
-                      <div class="col-lg-4 single-b-wrap col-md-12">
+                      <div class="col-lg-3 single-b-wrap col-md-12">
+                        <i class="fa fa-eye" aria-hidden="true"></i> {{ $post->view_count }}
+                        views
+                      </div>
+                      <div class="col-lg-3 single-b-wrap col-md-12">
                         <i class="fa fa-comment-o" aria-hidden="true"></i> {{ $post->comments->count() }}
                         comments
                       </div>
-                      <div class="col-lg-4 single-b-wrap col-md-12">
+                      <div class="col-lg-3 single-b-wrap col-md-12">
                         <ul class="social-icons">
                           <li>
                             <a href="#"
@@ -490,6 +494,11 @@
               getLike();
             }
           });
+        });
+        //when not authenticate
+        $(".likeoff").click(function(e){
+          e.preventDefault();
+          alert("please Login First!");
         });
         
         checkUser();

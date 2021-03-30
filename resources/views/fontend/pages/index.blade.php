@@ -102,7 +102,7 @@
 
 
                 <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> {{ $post->comments->count() }}</span></li>
-                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>5</span></li>
+                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>{{ $post->view_count }}</span></li>
               </ul>
 
               <p></p>

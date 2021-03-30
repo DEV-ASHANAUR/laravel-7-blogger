@@ -203,4 +203,8 @@ class PostController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+    public function likedUsers($post){
+        $posts = Post::findOrFail($post);
+        return view('backend.pages.post.likeduser',compact('posts'));
+    }
 }

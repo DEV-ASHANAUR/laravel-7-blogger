@@ -48,19 +48,24 @@
                           </p>
                           <p class="footer pt-20">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            <a href="#">06 Likes</a>
+                            <a href="{{ route('post',$post->slug) }}">{{ $post->likedUsers->count() }} Likes</a>
                             <i
                               class="ml-20 fa fa-comment-o"
                               aria-hidden="true"
                             ></i>
-                            <a href="#">02 Comments</a>
+                            <a href="{{ route('post',$post->slug) }}">{{ $post->comments->count() }} Comments</a>
+                            <i
+                              class="ml-20 fa fa-eye"
+                              aria-hidden="true"
+                            ></i>
+                            <a href="{{ route('post',$post->slug) }}">{{ $post->view_count }} views</a>
                           </p>
                         </div>
                       </div>
                       @empty
                       <h3>No post availabe</h3>
                       @endforelse
-                      <div class="justify-content-center d-flex mt-5">
+                      <div class="justify-content-center d-flex mt-5 mb-5">
                         {{ $posts->links()}}
                       </div>
                       {{-- <div class="single-posts col-lg-6 col-sm-6">

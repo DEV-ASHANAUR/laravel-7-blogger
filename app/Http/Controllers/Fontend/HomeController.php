@@ -8,6 +8,7 @@ use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,11 @@ class HomeController extends Controller
     }
     public function post($slug){
         $post = Post::where('slug',$slug)->where('status',1)->first();
-        // dd($post);
+        $post_key = 'post_'.$post->id;
+        if(!Session::has($post_key)){
+            $post->increment('view_count');
+            Session::put($post_key, 1);
+        }
         return view('fontend.pages.post',compact('post'));
     }
     public function categories(){
