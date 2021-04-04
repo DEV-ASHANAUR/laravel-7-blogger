@@ -21,19 +21,19 @@ use Illuminate\Support\Facades\View;
 
 Auth::routes();
 
-Route::get('/','fontend\HomeController@index')->name('home.index');
-Route::get('/posts','fontend\HomeController@posts')->name('posts');
-Route::get('/post/{slug}','fontend\HomeController@post')->name('post');
-Route::get('/categories','fontend\HomeController@categories')->name('categories');
-Route::get('/category/{slug}','fontend\HomeController@categoryPost')->name('category.post');
-Route::get('/search','fontend\HomeController@search')->name('search');
-Route::get('/tag/{name}','fontend\HomeController@tagPost')->name('tag.post');
-Route::post('/comment/{post}', 'fontend\CommentController@store')->name('comment.store');
-Route::post('/comment-reply/{comment}', 'fontend\ReplyController@store')->name('reply.store');
-Route::post('/like-post', 'fontend\HomeController@likePost')->name('post.like');
+Route::get('/','Fontend\HomeController@index')->name('home.index');
+Route::get('/posts','Fontend\HomeController@posts')->name('posts');
+Route::get('/post/{slug}','Fontend\HomeController@post')->name('post');
+Route::get('/categories','Fontend\HomeController@categories')->name('categories');
+Route::get('/category/{slug}','Fontend\HomeController@categoryPost')->name('category.post');
+Route::get('/search','Fontend\HomeController@search')->name('search');
+Route::get('/tag/{name}','Fontend\HomeController@tagPost')->name('tag.post');
+Route::post('/comment/{post}', 'Fontend\CommentController@store')->name('comment.store');
+Route::post('/comment-reply/{comment}', 'Fontend\ReplyController@store')->name('reply.store');
+Route::post('/like-post', 'Fontend\HomeController@likePost')->name('post.like');
 //ajax
-Route::get('/get-like', 'fontend\HomeController@getLike')->name('get.like');
-Route::get('/check-like-not', 'fontend\HomeController@checkLike')->name('check.like');
+Route::get('/get-like', 'Fontend\HomeController@getLike')->name('get.like');
+Route::get('/check-like-not', 'Fontend\HomeController@checkLike')->name('check.like');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
