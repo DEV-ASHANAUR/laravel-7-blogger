@@ -37,6 +37,24 @@ Route::get('/check-like-not', 'Fontend\HomeController@checkLike')->name('check.l
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('user')->group(function(){
+    Route::middleware('auth:web')->group(function(){
+        Route::get('profile', 'User\ProfileController@index')->name('user.profile');
+        Route::post('profile/update', 'User\ProfileController@update')->name('user.profile.update');
+        Route::get('profile/password', 'User\ProfileController@password')->name('user.profile.password');
+        Route::post('profile/password/change', 'User\ProfileController@passwordUpdate')->name('user.profile.password.update');
+
+        Route::resource('post', 'User\PostController',['names' => 'user.post']);
+        Route::get('/post-pending', 'User\PostController@pending')->name('user.post.pending');
+        Route::get('/post-liked-users/{post}', 'User\PostController@likedUsers')->name('like.users');
+        Route::get('/comment','User\CommentController@index')->name('user.comment.index');
+        Route::delete('/comment/{id}', 'User\CommentController@destroy')->name('user.comment.destroy');
+        Route::get('/comment-reply','User\ReplyCommentController@index')->name('user.comment.reply');
+        Route::delete('/comment-reply/{id}', 'User\ReplyCommentController@destroy')->name('user.reply.destroy');
+    });
+});
+
+
 Route::prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
@@ -57,7 +75,7 @@ Route::prefix('admin')->group(function () {
     });
     
 
-    //login routes
+    //admin login routes
     Route::get('/login','Backend\Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('/login/submit','Backend\Auth\LoginController@login')->name('admin.login.submit');
     //logout routes
@@ -70,4 +88,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/password/reset/{token}','Backend\Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
     Route::post('/password/reset','Backend\Auth\ResetPasswordController@reset')->name('admin.password.update');
+
+    
+    
 });
