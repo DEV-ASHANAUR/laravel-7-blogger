@@ -52,7 +52,7 @@
               <div class="card">
                 {{-- <h3 class="text-center"><span class="text-danger">Hi..! </span><strong class="text-warning">{{ Auth::user()->name }}</strong> Update Your Profile</h3> --}}
                 <div class="card-body">
-                    <form class="register-form outer-top-xs" role="form" action="{{ route('user.profile.password.update') }}" method="POST">
+                    <form class="register-form outer-top-xs" role="form" action="{{ route('userXXXS.profile.password.update') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="info-title" for="old-password">Old Password <span>*</span></label>
