@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -38,6 +43,28 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    //github login system
+    public function github()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+    public function githubRedirect()
+    {
+        $gituser = Socialite::driver('github')->user();
+        // dd($gituser);
+        $user = User::firstOrCreate([
+            'email' => $gituser->email
+        ],[
+            'name' => $gituser->name,
+            'email' => $gituser->email,
+            'password' => Hash::make(Str::random(24)),
+            'email_verified_at' => Carbon::now()
+        ]);
+        Auth::login($user,true);
+        return redirect()->route('home');
+    }
+
 
     public function logout(){
         Auth::logout();

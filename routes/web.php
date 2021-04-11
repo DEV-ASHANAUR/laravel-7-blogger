@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\View;
 
 Auth::routes();
 
+//social login
+//github
+Route::get('login/github', 'Auth\LoginController@github');
+Route::get('login/github/callback', 'Auth\LoginController@githubRedirect');
+
 Route::get('/','Fontend\HomeController@index')->name('home.index');
 Route::get('/posts','Fontend\HomeController@posts')->name('posts');
 Route::get('/post/{slug}','Fontend\HomeController@post')->name('post');
@@ -89,6 +94,5 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/password/reset','Backend\Auth\ResetPasswordController@reset')->name('admin.password.update');
 
-    
     
 });

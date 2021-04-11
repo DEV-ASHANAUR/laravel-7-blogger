@@ -2,6 +2,14 @@
 @section('auth-title')
     Login | User Panel
 @endsection
+@section('style')
+    <style>
+        .login-other a.git-login {
+            background: #463964;
+            color: #fff;
+        }
+    </style>
+@endsection
 @section('auth-content')
 <div class="login-area login-bg">
     <div class="container">
@@ -56,8 +64,11 @@
                     <div class="submit-btn-area">
                         <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
                         <div class="login-other row mt-4">
-                            <div class="col-6">
+                            {{-- <div class="col-6">
                                 <a class="fb-login" href="#">Log in with <i class="fa fa-facebook"></i></a>
+                            </div> --}}
+                            <div class="col-6">
+                                <a class="git-login" href="{{ url('login/github') }}">Log in with <i class="fa fa-github"></i></a>
                             </div>
                             <div class="col-6">
                                 <a class="google-login" href="#">Log in with <i class="fa fa-google"></i></a>
