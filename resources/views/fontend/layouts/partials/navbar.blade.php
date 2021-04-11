@@ -43,8 +43,10 @@
                 <!-- <i class="fas fa-user"></i> -->
               </a>
               <div id="dropMenu" class="dropdown-menu menu1" style="display: none;">
-                <a href="/admin/dashboard/profile" class="dropdown-item" target="_blank">Admin Subhadip</a>
-                <a class="dropdown-item" href="/admin/dashboard"><i class="fa fa-tv" aria-hidden="true"></i>&nbsp;
+                <a href="{{route('admin.login')}}" class="dropdown-item" target="_blank"><i class="fa fa-user" aria-hidden="true"></i> Admin</a>
+                <a href="{{route('login')}}" class="dropdown-item" target="_blank"><i class="fa fa-user" aria-hidden="true"></i> User</a>
+
+                <!-- <a class="dropdown-item" href="/admin/dashboard"><i class="fa fa-tv" aria-hidden="true"></i>&nbsp;
                   Dashboard</a>
                 <a class="dropdown-item" href="/admin/dashboard"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;
                   Favorite List</a>
@@ -55,7 +57,7 @@
                 </a>
 
                 <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                  <input type="hidden" name="_token" value="ePJORhim7paUxLLNT4uhKMeJSbwU4kZwpnHVl7Ph"> </form>
+                  <input type="hidden" name="_token" value="ePJORhim7paUxLLNT4uhKMeJSbwU4kZwpnHVl7Ph"> </form> -->
 
               </div>
             </li>

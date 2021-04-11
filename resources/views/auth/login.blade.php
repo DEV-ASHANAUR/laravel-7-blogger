@@ -71,7 +71,7 @@
                                 <a class="git-login" href="{{ url('login/github') }}">Log in with <i class="fa fa-github"></i></a>
                             </div>
                             <div class="col-6">
-                                <a class="google-login" href="#">Log in with <i class="fa fa-google"></i></a>
+                                <a class="google-login" href="{{ url('login/google') }}">Log in with <i class="fa fa-google"></i></a>
                             </div>
                         </div>
                     </div>

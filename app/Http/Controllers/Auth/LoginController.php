@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Date;
 
 class LoginController extends Controller
 {
@@ -59,7 +60,28 @@ class LoginController extends Controller
             'name' => $gituser->name,
             'email' => $gituser->email,
             'password' => Hash::make(Str::random(24)),
-            'email_verified_at' => Carbon::now()
+            'email_verified_at' => Date::now()
+        ]);
+        Auth::login($user,true);
+        return redirect()->route('home');
+    }
+
+    //google login system
+    public function google()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function googleRedirect()
+    {
+        $googleuser = Socialite::driver('google')->user();
+        // dd($googleuser);
+        $user = User::firstOrCreate([
+            'email' => $googleuser->email
+        ],[
+            'name' => $googleuser->name,
+            'email' => $googleuser->email,
+            'password' => Hash::make(Str::random(24)),
+            'email_verified_at' => Date::now()
         ]);
         Auth::login($user,true);
         return redirect()->route('home');
@@ -68,6 +90,6 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('home.index');
     }
 }
