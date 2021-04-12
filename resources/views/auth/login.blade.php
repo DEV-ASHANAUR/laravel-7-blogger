@@ -30,7 +30,7 @@
                 <div class="login-form-body">
                     <div class="form-gp">
                         <label for="email">Email address</label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" />
                         <i class="ti-email"></i>
                         <div class="text-danger"></div>
                         @error('email')
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-gp">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required autocomplete="current-password" >
+                        <input type="password" id="password" name="password" required autocomplete="current-password" />
                         <i class="ti-lock"></i>
                         <div class="text-danger"></div>
                         @error('password')

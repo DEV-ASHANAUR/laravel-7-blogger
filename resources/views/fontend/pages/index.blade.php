@@ -2,6 +2,26 @@
 @section('title')
     Home Page
 @endsection
+@section('style')
+  <style>
+    .single-travel .dates {
+      background: #361e4a;
+      color: #fff;
+      padding: 5px 9px;
+      position: absolute;
+    }
+
+    .single-cat .date {
+        background-color: #361e4a;
+        color: #fff;
+        font-weight: 100;
+        padding: 2px 15px;
+        width: 115px;
+        text-align: center;
+        margin-top: 20px;
+    }
+  </style>
+@endsection
 @section('content')
     <!-- start banner Area -->
   <section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="{{ asset('fontend') }}/img/header-bg.jpg">
@@ -10,7 +30,7 @@
       <div class="row fullscreen">
         <div class="banner-content d-flex align-items-center col-lg-12 col-md-12">
           <h1>
-            Welcome to myiotlab<br />
+            Welcome to Dev Tech<br />
             <p>
               L<span style="font-size: 0.7em">earn</span> &nbspC<span style="font-size: 0.7em">reate</span>
               &nbspS<span style="font-size: 0.7em">hare</span>
@@ -82,180 +102,30 @@
       <div class="container">
         <div class="row justify-content-center">
           @foreach ($posts as $post)
-          <div class="single-posts col-lg-4 col-sm-4 mb-3">
-            <img class="img-fluid" src="{{ asset('storage/post/'.$post->image) }}" alt="">
-            <div class="date mt-20 mb-20">{{ $post->created_at->diffForHumans() }}</div>
-            <div class="detail">
-              <a href="{{ route('post',$post->slug) }}">
-                <h4 class="pb-20">{{ $post->title }}</h4>
-              </a>
-              <p>
-                {!! Str::limit($post->body, 400, '...') !!}
-              </p>
-			  <p class=" footer"="">
-              <br>
-              </p>
-              <ul class="d-flex space-around">
-                <li><a href="javascript:void(0);"
-                    onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i
-                      class="fa fa-heart-o" aria-hidden="true"></i><span> {{ $post->likedUsers->count() }}</span></a></li>
 
-
-                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> {{ $post->comments->count() }}</span></li>
-                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>{{ $post->view_count }}</span></li>
-              </ul>
-
-              <p></p>
-            </div>
+          <div class="col-lg-6 col-md-6 mb-3 travel-left">
+              <div class="single-travel media pb-70">
+                <img class="img-fluid d-flex  mr-3" width="195px" height="180px" src="{{ asset('storage/post/'.$post->image) }}" alt="">
+                <div class="dates">
+                  {{ $post->created_at->diffForHumans() }}
+                </div>
+                <div class="media-body align-self-center">
+                <h4 class="mt-0"><a href="{{ route('post',$post->slug) }}">{{ $post->title }}</a></h4>
+                <p>{!! Str::limit($post->body, 200, '...') !!}</p>
+                <div class="meta-bottom d-flex justify-content-between">
+                <p><span class="lnr lnr-heart"></span> {{ $post->likedUsers->count() }} Likes</p>
+                <p><span class="lnr lnr-eye"></span> {{ $post->view_count }} Views</p>
+                <p><span class="lnr lnr-bubble"></span> {{ $post->comments->count() }}</p>
+                </div>
+                </div>
+              </div>
           </div>
           @endforeach
-          {{-- <div class="single-posts col-lg-4 col-sm-4 mb-3">
-            <img class="img-fluid" src="{{ asset('fontend') }}/img/c2.jpg" alt="">
-            <div class="date mt-20 mb-20">2 months ago</div>
-            <div class="detail">
-              <a href="http://localhost:8000/post/ssssssssssss">
-                <h4 class="pb-20">ssssssssssss</h4>
-              </a>
-              <p>
-              </p>
-              <p>qqqqqq</p>
-              <p></p>
-              <p class="footer">
-                <br>
-              </p>
-              <ul class="d-flex space-around">
-                <li><a href="javascript:void(0);"
-                    onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i
-                      class="fa fa-heart-o" aria-hidden="true"></i><span> 0</span></a></li>
-
-
-                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> 0</span></li>
-                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>3</span></li>
-              </ul>
-
-              <p></p>
-            </div>
-          </div>
-          <div class="single-posts col-lg-4 col-sm-4 mb-3">
-            <img class="img-fluid" src="{{ asset('fontend') }}/img/c3.jpg" alt="">
-            <div class="date mt-20 mb-20">7 months ago</div>
-            <div class="detail">
-              <a href="http://localhost:8000/post/kkkkkkkkkkkkkk">
-                <h4 class="pb-20">kkkkkkkkkkkkkk</h4>
-              </a>
-              <p>
-              </p>
-              <p>jjjjjjjjjjjjjjjjj</p>
-              <p></p>
-              <p class="footer">
-                <br>
-              </p>
-              <ul class="d-flex space-around">
-                <li><a href="javascript:void(0);"
-                    onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i
-                      class="fa fa-heart-o" aria-hidden="true"></i><span> 0</span></a></li>
-
-
-                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> 1</span></li>
-                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>1</span></li>
-              </ul>
-
-              <p></p>
-            </div>
-          </div>
-          <div class="single-posts col-lg-4 col-sm-4 mb-3">
-            <img class="img-fluid" src="{{ asset('fontend') }}/img/c1.jpg" alt="">
-            <div class="date mt-20 mb-20">7 months ago</div>
-            <div class="detail">
-              <a href="http://localhost:8000/post/new-possstss">
-                <h4 class="pb-20">New Possstss</h4>
-              </a>
-              <p>
-              </p>
-              <p>helo&nbsp;&nbsp;<span style="font-size: 1rem;">helo&nbsp;&nbsp;</span><span
-                  style="font-size: 1rem;">helo&nbsp;&nbsp;</span><span
-                  style="font-size: 1rem;">helo&nbsp;&nbsp;</span><span
-                  style="font-size: 1rem;">helo&nbsp;&nbsp;</span><span
-                  style="font-size: 1rem;">helo&nbsp;&nbsp;</span><span
-                  style="font-size: 1rem;">helo&nbsp;&nbsp;</span><span style="font-size: 1rem;">helo&nbsp;&nbsp;</span>
-                <sp... <="" p="">
-                </sp...>
-              </p>
-              <p class="footer">
-                <br>
-              </p>
-              <ul class="d-flex space-around">
-                <li><a href="javascript:void(0);"
-                    onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i
-                      class="fa fa-heart-o" aria-hidden="true"></i><span> 0</span></a></li>
-
-
-                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> 1</span></li>
-                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>1</span></li>
-              </ul>
-
-              <p></p>
-            </div>
-          </div>
-          <div class="single-posts col-lg-4 col-sm-4 mb-3">
-            <img class="img-fluid" src="{{ asset('fontend') }}/img/c1.jpg" alt="">
-            <div class="date mt-20 mb-20">7 months ago</div>
-            <div class="detail">
-              <a href="http://localhost:8000/post/hello-world">
-                <h4 class="pb-20">hello world</h4>
-              </a>
-              <p>
-              </p>
-              <p>&nbsp;<span style="font-size: 1rem;">Hleo world&nbsp;</span><span
-                  style="font-size: 1rem;">&nbsp;</span><span style="font-size: 1rem;">Hleo world&nbsp;</span><span
-                  style="font-size: 1rem;">&nbsp;</span><span style="font-size: 1rem;">Hleo world&nbsp;</span><span
-                  style="font-size: 1rem;">&nbsp;</span><span style="font-size: 1rem;">Hleo world&nbsp;</span><span
-                  style="font-size: 1rem;">&nbsp;
-                </span></p>
-              <p class="footer">
-                <br>
-              </p>
-              <ul class="d-flex space-around">
-                <li><a href="javascript:void(0);"
-                    onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i
-                      class="fa fa-heart-o" aria-hidden="true"></i><span> 1</span></a></li>
-
-
-                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> 0</span></li>
-                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>2</span></li>
-              </ul>
-              <p></p>
-            </div>
-          </div>
-          <div class="single-posts col-lg-4 col-sm-4 mb-3">
-            <img class="img-fluid" src="{{ asset('fontend') }}/img/c1.jpg" alt="">
-            <div class="date mt-20 mb-20">7 months ago</div>
-            <div class="detail">
-              <a href="http://localhost:8000/post/something">
-                <h4 class="pb-20">Something</h4>
-              </a>
-              <p>
-              </p>
-              <p>cv xcvxc</p>
-              <p></p>
-              <p class="footer">
-                <br>
-              </p>
-              <ul class="d-flex space-around">
-                <li><a href="javascript:void(0);"
-                    onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i
-                      class="fa fa-heart-o" aria-hidden="true"></i><span> 0</span></a></li>
-
-
-                <li><i class="fa fa-comment-o" aria-hidden="true"></i><span> 0</span></li>
-                <li><i class="fa fa-eye" aria-hidden="true"></i> <span>0</span></li>
-              </ul>
-
-              <p></p>
-            </div>
-          </div> --}}
-          <a href="{{ route('posts') }}" class="primary-btn load-more pbtn-2 text-uppercase mx-auto mt-60">Load More </a>
+          
         </div>
+          <div class="justify-content-center d-flex mt-5">
+            <a href="{{ route('posts') }}" class="primary-btn load-more pbtn-2 text-uppercase mx-auto mt-60">Load More </a>
+          </div>
       </div>
     </div>
   </section>
