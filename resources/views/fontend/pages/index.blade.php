@@ -20,6 +20,9 @@
         text-align: center;
         margin-top: 20px;
     }
+    .section-gap {
+        padding: 55px 0 !important;
+    }
   </style>
 @endsection
 @section('content')
@@ -121,9 +124,8 @@
               </div>
           </div>
           @endforeach
-          
         </div>
-          <div class="justify-content-center d-flex mt-5">
+          <div class="justify-content-center d-flex">
             <a href="{{ route('posts') }}" class="primary-btn load-more pbtn-2 text-uppercase mx-auto mt-60">Load More </a>
           </div>
       </div>
@@ -131,7 +133,7 @@
   </section>
 
   <!-- Start team Area -->
-  <section class="team-area section-gap" id="about">
+  <section class="team-area section-gap gap" id="about">
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="menu-content pb-70 col-lg-8">
