@@ -95,6 +95,14 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
+                                <label class="info-title" for="summernote1">About <span></span></label>
+                                <textarea name="about" id="summernote1" class="form-control" cols="30" rows="10" placeholder="Write something...">
+                                    {{ Auth::user()->about }}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
                                 <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Submit</button>
                             </div>
                         </div>
@@ -111,6 +119,10 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2();
+            $('#summernote1').summernote({
+                height: 200,
+                tooltip: false
+            });
         });
     </script>
     <script>

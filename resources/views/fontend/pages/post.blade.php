@@ -433,6 +433,48 @@
                 </div>
               </div>
               <div class="col-lg-4 sidebar-area">
+                @include('fontend.layouts.partials.search-bar')
+
+                <div class="single_widget about_widget">
+                  @if (!empty($post->user_id))
+                    <img src="{{ (!empty($post->user->image))?(asset('storage/profile/'.$post->user->image)):(asset('media/profile.jpg')) }}" class="img-thumbnail" width="123" height="122" alt="" />
+                  @else
+                    <img src="{{ (!empty($post->admin->image))?(asset('storage/profile/'.$post->admin->image)):(asset('backend/assets/images/author/avatar.png')) }}" class="img-thumbnail" width="123" height="122" alt="" />
+                  @endif
+                  
+                  @if (!empty($post->user_id))
+                      <h2 class="text-uppercase">{{ $post->user->name }}</h2>
+                  @else
+                      <h2 class="text-uppercase">{{ $post->admin->name }}</h2>
+                  @endif
+
+                  @if (!empty($post->user_id))
+                      @if (!empty($post->user->about))
+                        <p class="text-uppercase">{!! $post->user->about !!}</p>
+                      @else
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi, impedit architecto minima vel fugiat ex fuga culpa, voluptates suscipit magnam, expedita eveniet! Quos nam ut hic esse in, odit non!</p> 
+                      @endif
+                  @else
+                      @if (!empty($post->admin->about))
+                        <p class="text-uppercase">{!! $post->admin->about !!}</p>
+                      @else
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi, impedit architecto minima vel fugiat ex fuga culpa, voluptates suscipit magnam, expedita eveniet! Quos nam ut hic esse in, odit non!</p> 
+                      @endif
+                      
+                  @endif
+                  {{--<div class="social-link">
+                    <a href="#"
+                      ><button class="btn">
+                        <i class="fa fa-facebook" aria-hidden="true"></i> Like
+                      </button></a
+                    >
+                    <a href="#"
+                      ><button class="btn">
+                        <i class="fa fa-twitter" aria-hidden="true"></i> follow
+                      </button></a
+                    >
+                  </div>--}}
+                </div>
                   @include('fontend.layouts.partials.sidebar')                
               </div>
             </div>

@@ -23,11 +23,24 @@
     .section-gap {
         padding: 55px 0 !important;
     }
+    .clock {
+    /* position: absolute; */
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translateX(-50%) translateY(-50%); */
+    color: #17D4FE;
+    font-size: 20px;
+    font-family: Orbitron;
+    letter-spacing: 3px;
+   
+
+
+}
   </style>
 @endsection
 @section('content')
     <!-- start banner Area -->
-  <section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="{{ asset('fontend') }}/img/header-bg.jpg">
+  <section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="{{ asset('fontend') }}/img/header-bg1.jpg">
     <div class="overlay-bg overlay"></div>
     <div class="container">
       <div class="row fullscreen">
@@ -43,15 +56,15 @@
 
         <div class="head-bottom-meta d-flex justify-content-between align-items-end col-lg-12">
           <div class="col-lg-6 flex-row d-flex meta-left no-padding">
-            <a href="/login" class="genric-btn info circle arrow mr-md-auto">Visit Yotube <span
+            <a href="/login" class="genric-btn info circle arrow mr-md-auto">Join <span
                 class="lnr lnr-arrow-right"></span></a>
           </div>
           <div class="col-lg-6 flex-row d-flex meta-right no-padding justify-content-end">
             <div class="user-meta">
-              <h4 class="text-white">Mark wiens</h4>
-              <p>12 Dec, 2017 11:21 am</p>
+              <h4 class="text-white">Md Ashanaur Rahman</h4>
+                <p id="MyClockDisplay" class="clock" onload="showTime()"></p>
             </div>
-            <img class="img-fluid user-img" src="{{ asset('fontend') }}/img/user.jpg" alt="" />
+            <img class="img-fluid user-img" src="{{ asset('fontend') }}/./img/ashanur.jpg" width="40px" height="40px" alt="" />
           </div>
         </div>
       </div>
@@ -139,13 +152,13 @@
         <div class="menu-content pb-70 col-lg-8">
           <div class="title text-center">
             <h1 class="mb-10">About This Site</h1>
-            <p>This is personal blogging site related to Internet of Things &amp; Web Development Tutorials</p>
+            <p>This is blogging site related to Internet of Things.</p>
           </div>
         </div>
       </div>
       <div class="row justify-content-center d-flex align-items-center">
         <div class="col-lg-6 team-left">
-          <p>
+          {{--<p>
             Find a blogs and tutorials related to Internet of things, Web Designe, Web Development, GIS Web applications
             and more.
           </p>
@@ -153,17 +166,17 @@
             This site is made with laravel framework. The theme is <a href="">Blogger Theme</a> and the Admin Panel
             theme is <a href="https://github.com/puikinsh/sufee-admin-dashboard">Sufee Admin</a>.
           </p>
-          <p>Checkout the full tutorial how this site is made on <span class="c1">Youtube</span>.</p>
+          <p>Checkout the full tutorial how this site is made on <span class="c1">Youtube</span>.</p>--}}
           <h4>About the Creator</h4>
           <br>
-          <p>I am <span class="c1">Full stack Web Developer</span> specialized <span class="c1">LARAVEL</span> - PHP.
-            Currently Studing GEOSPATIAL SCIENCE and learning <span class="c1">GIS Web Applications Development</span>.
+          <p>I am <span class="c1">Web Developer</span> specialized <span class="c1">LARAVEL</span> - PHP.
+            Currently Studing Complete diploma in Computer Technology. <span class="c1">Now I Am Learning About Web Development</span>.
           </p>
           <br>
           <h4>Email: <span style="font-size: medium; font-weight: lighter;">ashanour009@gmail.com</span></h4>
           <br>
           <div class="col-md-12 d-flex justify-content-center py-3 mt-2">
-            <a href="https://subhadipghorui.github.io" class="genric-btn info circle arrow mr-md-auto"
+            <a href="https://github.com/DEV-ASHANAUR" class="genric-btn info circle arrow mr-md-auto"
               target="_blank">Know More<span class="lnr lnr-arrow-right"></span></a>
           </div>
         </div>
@@ -188,4 +201,37 @@
     </div>
   </section>
   <!-- End team Area -->
+@endsection
+@section('script')
+    <script>
+      function showTime(){
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+        
+        if(h == 0){
+            h = 12;
+        }
+        
+        if(h > 12){
+            h = h - 12;
+            session = "PM";
+        }
+        
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+        
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+        
+        setTimeout(showTime, 1000);
+        
+    }
+
+    showTime();
+    </script>
 @endsection

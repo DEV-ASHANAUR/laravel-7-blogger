@@ -2,7 +2,8 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container px-3">
         <a class="navbar-brand" href="{{ route('home.index') }}">
-          <img src="{{ asset('fontend') }}/img/logo.png" alt="">
+          {{--<img src="{{ asset('fontend') }}/img/logo.png" alt="">--}}
+          <span style="color:#40A8FF">Dev-Tech</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

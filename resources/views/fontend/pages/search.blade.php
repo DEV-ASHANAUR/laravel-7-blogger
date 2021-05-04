@@ -71,6 +71,7 @@
                 </div>
               </div>
               <div class="col-lg-4 sidebar-area">
+                @include('fontend.layouts.partials.search-bar')
                 @include('fontend.layouts.partials.sidebar')  
               </div>
             </div>

@@ -29,6 +29,7 @@ class ProfileController extends Controller
         $admin->email = $request->email;
         $admin->username = $request->username;
         $admin->phone = $request->phone;
+        $admin->about = $request->about;
         if($request->image != null){
             $request->validate([
                 'image' => 'required|image|mimes:jpg,png,jpeg'

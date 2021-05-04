@@ -73,7 +73,7 @@ class PostController extends Controller
 
         $post->image = $imageName;
         $post->created_at = Carbon::now();
-        $post->user_id = Auth::id();
+        $post->admin_id = Auth::guard('admin')->user()->id;
         if(isset($request->status)){
             $post->status = 1;
         }
@@ -165,7 +165,7 @@ class PostController extends Controller
 
         $post->image = $imageName;
         $post->updated_at = Carbon::now();
-        $post->user_id = Auth::id();
+        $post->admin_id = Auth::guard('admin')->user()->id;
         if(isset($request->status)){
             $post->status = 1;
         }

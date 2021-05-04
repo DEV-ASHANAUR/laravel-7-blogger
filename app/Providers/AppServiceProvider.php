@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('fontend.layouts.partials.sidebar', function ($view) {
             $categories = Category::all()->take(10);
-            $recentPost = Post::latest()->take(3)->get();
+            $recentPost = Post::where('status',1)->latest()->take(3)->get();
             $recentTags = Tag::all();
             return $view->with('categories', $categories)->with('recentPost',$recentPost)->with('recentTags',$recentTags);
         });
