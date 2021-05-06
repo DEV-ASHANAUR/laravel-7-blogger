@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\View;
 
 
 Auth::routes();
+//send mail
+
 
 //social login
 //github
@@ -28,6 +30,8 @@ Route::post('/like-post', 'Fontend\HomeController@likePost')->name('post.like');
 //ajax
 Route::get('/get-like', 'Fontend\HomeController@getLike')->name('get.like');
 Route::get('/check-like-not', 'Fontend\HomeController@checkLike')->name('check.like');
+//test send mail
+Route::get('/send', 'Fontend\HomeController@mail');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -85,3 +89,4 @@ Route::prefix('admin')->group(function () {
 
     
 });
+

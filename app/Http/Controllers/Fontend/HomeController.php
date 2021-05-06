@@ -9,6 +9,8 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewPost;
 
 class HomeController extends Controller
 {
@@ -84,6 +86,11 @@ class HomeController extends Controller
             return 'please login!';
         }
         
+    }
+    public function mail(){
+        $post = Post::find(4);
+        Mail::to('ashanour009@gmail.com')->send(new NewPost($post));
+        // return (new NewPost($post))->render();
     }
     
 }
