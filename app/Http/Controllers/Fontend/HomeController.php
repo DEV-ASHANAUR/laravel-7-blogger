@@ -89,7 +89,9 @@ class HomeController extends Controller
     }
     public function mail(){
         $post = Post::find(4);
-        Mail::to('ashanour009@gmail.com')->send(new NewPost($post));
+        Mail::to('ashanour009@gmail.com')->
+        bcc(['user1@gmail.com','user2@gmail.com'])
+        ->queue(new NewPost($post));
         // return (new NewPost($post))->render();
     }
     
