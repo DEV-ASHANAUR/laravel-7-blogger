@@ -20,9 +20,26 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::where('status','1')->latest()->get();
         return view('backend.pages.post.index',compact('posts'));
         
+    }
+
+    public function pending(){
+        // dd('ok');
+        $posts = Post::where('status','0')->latest()->get();
+        return view('backend.pages.post.pending',compact('posts'));
+    }
+
+    public function approve(Request $request,$id){
+        $post = Post::find($id);
+        $post->status = 1;
+        $post->save();
+        $notification=array(
+            'message'=>'Successfully Approved Post!',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -168,6 +185,8 @@ class PostController extends Controller
         $post->admin_id = Auth::guard('admin')->user()->id;
         if(isset($request->status)){
             $post->status = 1;
+        }else{
+            $post->status = 0;
         }
         $post->save();
         $post->tags()->delete();

@@ -5,7 +5,10 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="index.html"><img src="{{ asset('backend') }}/assets/images/icon/logo.png" alt="logo"></a>
+            <a href="{{ url('/') }}">
+                {{-- <img src="{{ asset('backend') }}/assets/images/icon/logo.png" alt="logo"> --}}
+                <h5 class="text-white">Dev-Tech</h5>
+            </a>
         </div>
     </div>
     <div class="main-menu">
@@ -73,8 +76,13 @@
                             </span></a>
                         <ul class="collapse @yield('post')">
                             @if ($usr->can('post.view'))
-                            <li class="@yield('all-post')"><a href="{{ route('admin.post.index') }}">All Post</a></li>
+                            <li class="@yield('all-post')"><a href="{{ route('admin.post.index') }}">Published Post</a></li>
                             @endif
+
+
+                            <li class="@yield('pending-post')"><a href="{{ route('admin.post.pending') }}">Pending Post</a></li>
+
+                            
                             @if ($usr->can('post.create'))
                             <li class="@yield('create-post')"><a href="{{ route('admin.post.create') }}">Create Post</a></li>
                             @endif

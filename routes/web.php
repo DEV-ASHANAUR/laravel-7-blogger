@@ -65,6 +65,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('admins', 'Backend\AdminsController',['names' => 'admin.admins']);
         Route::resource('category', 'Backend\CategoryController',['names' => 'admin.category']);
         Route::resource('post', 'Backend\PostController',['names' => 'admin.post']);
+        Route::get('/post-pending', 'Backend\PostController@pending')->name('admin.post.pending');
+        Route::get('/post-approve/{id}', 'Backend\PostController@approve')->name('admin.post.approve');
         Route::get('/post-liked-users/{post}', 'Backend\PostController@likedUsers')->name('post.like.users');
         Route::get('/comment','Backend\CommentController@index')->name('comment.index');
         Route::delete('/comment/{id}', 'Backend\CommentController@destroy')->name('comment.destroy');
