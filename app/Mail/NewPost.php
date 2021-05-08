@@ -17,9 +17,11 @@ class NewPost extends Mailable
      * @return void
      */
     public $post;
-    public function __construct($post)
+    public $sub;
+    public function __construct($post,$sub)
     {
         $this->post = $post;
+        $this->sub = $sub;
     }
 
     /**
@@ -29,6 +31,6 @@ class NewPost extends Mailable
      */
     public function build()
     {
-        return $this->subject("You have a new post From Dev-Tech.")->view('mail.newpost');
+        return $this->subject($this->sub)->view('mail.newpost');
     }
 }

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Category;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewPost;
+use App\Models\Admin;
 
 class PostController extends Controller
 {
@@ -85,6 +88,13 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->status = 0;
         $post->save();
+        //send mail
+        $admins = Admin::all();
+        
+        foreach($admins as $admin){
+            Mail::to($admin->email)->queue(new NewPost($post,'You have a new post approve request'));
+        }
+        //end sending
         $tags = [];
         $tagcollection = array_map('trim', explode(',',$request->tags));
         foreach($tagcollection as $tag){

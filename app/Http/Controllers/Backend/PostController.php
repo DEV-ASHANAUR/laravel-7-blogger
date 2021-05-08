@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Backend;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewPost;
+
 
 class PostController extends Controller
 {
@@ -35,6 +39,13 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->status = 1;
         $post->save();
+        //send mail
+        $sub = "You have a new post from Dev-Tech.";
+        $users = User::all();
+        foreach($users as $user){
+            Mail::to($user->email)->queue(new NewPost($post,$sub));
+        }
+        //end mail
         $notification=array(
             'message'=>'Successfully Approved Post!',
             'alert-type'=>'success'
@@ -95,6 +106,13 @@ class PostController extends Controller
             $post->status = 1;
         }
         $post->save();
+        if($post->status == 1){
+            $sub = "You have a new post from Dev-Tech.";
+            $users = User::all();
+            foreach($users as $user){
+                Mail::to($user->email)->queue(new NewPost($post,$sub));
+            }
+        }
         $tags = [];
         $tagcollection = array_map('trim', explode(',',$request->tags));
         foreach($tagcollection as $tag){
@@ -189,6 +207,13 @@ class PostController extends Controller
             $post->status = 0;
         }
         $post->save();
+        if($post->status == 1){
+            $sub = "You have a new post from Dev-Tech.";
+            $users = User::all();
+            foreach($users as $user){
+                Mail::to($user->email)->queue(new NewPost($post,$sub));
+            }
+        }
         $post->tags()->delete();
         $tags = [];
         $tagcollection = array_map('trim', explode(',',$request->tags));

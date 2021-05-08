@@ -119,7 +119,12 @@
                 </div>
             </div>
             <p class="post-body">{!!Str::limit($post->body, 400)!!}</p>
+            @if ($post->status == 1)
             <a href="{{route('post',$post->slug)}}" class="btn">Read More</a>
+            @else
+            <a href="{{route('admin.post.show',$post->id)}}" class="btn">Read More</a>   
+            @endif
+            
         </div>
         <div class="footer">
             <p>This mail is from dev-tech.dev-ashanur.com</p>
