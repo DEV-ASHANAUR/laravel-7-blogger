@@ -88,7 +88,7 @@
                   </div>
                   <div class="bottom-wrapper">
                     <div class="row">
-                      <div class="col-lg-3 single-b-wrap col-md-12">
+                      <div class="col-lg-4 single-b-wrap col-md-12">
                         <input type="hidden" id="post_id" value="{{ $post->id }}">
                         @guest
                           <a href="#" class="likeoff"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
@@ -107,37 +107,53 @@
                           </form> --}}
                         @endguest
                       </div>
-                      <div class="col-lg-3 single-b-wrap col-md-12">
+                      <div class="col-lg-4 single-b-wrap col-md-12">
                         <i class="fa fa-eye" aria-hidden="true"></i> {{ $post->view_count }}
                         views
                       </div>
-                      <div class="col-lg-3 single-b-wrap col-md-12">
+                      <div class="col-lg-4 single-b-wrap col-md-12">
                         <i class="fa fa-comment-o" aria-hidden="true"></i> {{ $post->comments->count() }}
                         comments
                       </div>
-                      <div class="col-lg-3 single-b-wrap col-md-12">
-                        <ul class="social-icons">
-                          <li>
-                            <a href="#"
-                              ><i class="fa fa-facebook" aria-hidden="true"></i
-                            ></a>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-md-6 mb-3">
+                        Share it on Your Social Account
+                      </div>
+                      <div class="col-md-6 mb-3" id="social-links">
+                        <ul class="social-icons" style="float: left;">
+                          <li> 
+                            <a href="#" id="gmail-btn" target="_blank"
+                              ><i class="fa fa-envelope-o" aria-hidden="true" style="color: #cf3e39; font-size: 2rem"></i></a>
+                          </li>
+                          <li> 
+                            <a href="#" id="facebook-btn" target="_blank"
+                              ><i class="fa fa-facebook-square" aria-hidden="true" style="color: #3b5998; font-size: 2rem"></i></a>
                           </li>
                           <li>
-                            <a href="#"
-                              ><i class="fa fa-twitter" aria-hidden="true"></i
-                            ></a>
+                            <a href="#" id="gplus-btn" target="_blank"
+                              ><i class="fa fa-google-plus-square" aria-hidden="true" style="color: #dd4b39; font-size: 2rem"></i>
+                          </a>
                           </li>
                           <li>
-                            <a href="#"
-                              ><i class="fa fa-dribbble" aria-hidden="true"></i
-                            ></a>
+                            <a href="#" id="twitter-btn" target="_blank"
+                              ><i class="fa fa-twitter-square" aria-hidden="true" style="color: #1da1f2; font-size: 2rem"></i>
+                            </a>
                           </li>
                           <li>
-                            <a href="#"
-                              ><i class="fa fa-behance" aria-hidden="true"></i
-                            ></a>
+                            <a href="#" id="linkedin-btn" target="_blank"
+                              ><i class="fa fa-linkedin-square" aria-hidden="true" style="color: #0077b5; font-size: 2rem"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" id="whatsapp-btn" target="_blank"
+                              ><i class="fa fa-whatsapp" aria-hidden="true" style="color: #25d366; font-size: 2rem"></i>
+                            </a>
                           </li>
                         </ul>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <button class="btn btn-primary" id="shareBtn" style="display: none;"><i class="fa fa-share-alt text-white"></i> Share</button>
                       </div>
                     </div>
                   </div>
@@ -560,6 +576,43 @@
         x.style.display = "none";
       }
     }
+    //social share icon
+      const gmailBtn = document.getElementById('gmail-btn');
+      const fbBtn = document.getElementById('facebook-btn');
+      const gplusBtn = document.getElementById('gplus-btn');
+      const twitterBtn = document.getElementById('twitter-btn');
+      const linkBtn = document.getElementById('linkedin-btn');
+      const whatsupBtn = document.getElementById('whatsapp-btn');
+      const socialLinks = document.getElementById('social-links');
+
+      const postUri = encodeURI(document.location.href);
+      const postTitle = encodeURI('{{ $post->title }}');
+
+      fbBtn.setAttribute("href",`https://www.facebook.com/sharer.php?u=${postUri}`);
+      twitterBtn.setAttribute("href",`https://twitter.com/share?url=${postUri}&text=${postTitle}`);
+      linkBtn.setAttribute("href",`https://www.linkedin.com/shareArticle?url=${postUri}&title=${postTitle}`);
+      whatsupBtn.setAttribute("href",`https://wa.me/?text=${postTitle} ${postUri}`);
+      gmailBtn.setAttribute("href",`https://mail.google.com/mail/?view=cm&su=${postTitle}&body=${postUri}`);
+      gplusBtn.setAttribute("href",`https://plus.google.com/share?url=${postUri}`);
+
+      //share navigator
+      const shareBtn = document.getElementById('shareBtn');
+      if(navigator.share){
+        shareBtn.style.display = 'block';
+        socialLinks.style.display = 'none';
+        shareBtn.addEventListener('click',()=>{
+          navigator.share({
+            'title': postTitle,
+            'url': postUri
+          }).then((result)=>{
+            alert("Thank You For Sharing.");
+          }).catch((error)=>{
+            console.log(error);
+          });
+        });
+      }else{
+
+      }
     </script>
     //emojioneArea
     <script>
