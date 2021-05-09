@@ -20,6 +20,11 @@ class CreateCommentRepliesTable extends Migration
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->longText('reply');
             $table->timestamps();
+
+            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //on delete admin
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 

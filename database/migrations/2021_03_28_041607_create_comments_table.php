@@ -20,6 +20,12 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->longText('comment');
             $table->timestamps();
+            //on delete post
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            //on delete user
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //on delete admin
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 

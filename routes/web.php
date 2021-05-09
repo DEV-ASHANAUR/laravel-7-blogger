@@ -31,7 +31,7 @@ Route::post('/like-post', 'Fontend\HomeController@likePost')->name('post.like');
 Route::get('/get-like', 'Fontend\HomeController@getLike')->name('get.like');
 Route::get('/check-like-not', 'Fontend\HomeController@checkLike')->name('check.like');
 //test send mail
-Route::get('/send', 'Fontend\HomeController@mail');
+// Route::get('/send', 'Fontend\HomeController@mail');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

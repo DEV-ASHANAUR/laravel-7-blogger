@@ -25,6 +25,11 @@ class CreatePostsTable extends Migration
             $table->integer('view_count')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();
+
+            //on delete user
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //on delete admin
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 
