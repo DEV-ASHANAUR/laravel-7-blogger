@@ -27,7 +27,6 @@
                     {{-- Roles & Permission start --}}
                     @if ($usr->can('role.view') || $usr->can('role.edit') || $usr->can('role.delete') || $usr->can('role.create'))
                     <li>
-
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
                                 Roles & Permission
                             </span></a>
@@ -60,7 +59,7 @@
                     {{-- admin end --}}
                     {{-- category --}}
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
                                 Category
                             </span></a>
                         <ul class="collapse @yield('category')">
@@ -71,7 +70,7 @@
                     {{-- admin start --}}
                     @if ($usr->can('post.view') || $usr->can('post.edit') || $usr->can('post.delete') || $usr->can('post.create'))
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
                                 Posts
                             </span></a>
                         <ul class="collapse @yield('post')">
@@ -92,7 +91,7 @@
                     {{-- admin end --}}
                     {{-- category --}}
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-comment"></i><span>
                                 Comment
                             </span></a>
                         <ul class="collapse @yield('comment')">

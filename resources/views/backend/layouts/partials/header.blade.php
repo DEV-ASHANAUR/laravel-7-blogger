@@ -17,7 +17,7 @@
         <!-- profile info & task notification -->
         <div class="col-md-6 col-sm-4 clearfix">
             <ul class="notification-area pull-right">
-                <li id="full-view"><i class="ti-fullscreen"></i></li>
+                {{-- <li id="full-view"><i class="ti-fullscreen"></i></li>
                 <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
                 <li class="dropdown">
                     <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
@@ -77,8 +77,8 @@
                             </a>
                         </div>
                     </div>
-                </li>
-                <li class="dropdown">
+                </li> --}}
+                {{-- <li class="dropdown">
                     <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
                     <div class="dropdown-menu notify-box nt-enveloper-box">
                         <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
@@ -155,10 +155,10 @@
                             </a>
                         </div>
                     </div>
-                </li>
-                <li class="settings-btn">
+                </li> --}}
+                {{-- <li class="settings-btn">
                     <i class="ti-settings"></i>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

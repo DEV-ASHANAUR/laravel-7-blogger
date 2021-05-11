@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Category;
+use App\Comment;
+use App\Post;
+use App\User;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -29,6 +34,14 @@ class DashboardController extends Controller
         $total_roles = count(Role::select('id')->get());
         $total_admin = count(Admin::select('id')->get());
         $total_permission = count(Permission::select('id')->get());
-        return view('backend.pages.dashboard.index',compact('total_roles','total_admin','total_permission'));
+        $total_user = count(User::select('id')->get());
+        $total_cat = count(Category::select('id')->get());
+        $total_post = count(Post::select('id')->get());
+        $total_comment = count(Comment::select('id')->get());
+        $like = \DB::table('post_user')->get();
+        $likeCount = $like->count();
+        // dd($likeCount);
+        $total_pending = count(Post::where('status','0')->select('id')->get());
+        return view('backend.pages.dashboard.index',compact('total_roles','total_admin','total_permission','total_user','total_cat','total_post','total_comment','total_pending','likeCount'));
     }
 }
