@@ -67,9 +67,9 @@
         <p>
           {{ $recentPost->created_at->diffForHumans() }}
           <span>
-            <i class="fa fa-heart-o" aria-hidden="true"></i> 06
+            <i class="fa fa-heart-o" aria-hidden="true"></i> {{ $recentPost->likedUsers->count() }}
             <i class="fa fa-comment-o" aria-hidden="true"></i
-            >02</span
+            > {{ $recentPost->comments->count() }}</span
           >
         </p>
       </div>

@@ -75,7 +75,7 @@
   <!-- start footer Area -->
   <footer class="footer-area section-gap">
     <div class="container">
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-lg-3 col-md-12">
           <div class="single-footer-widget">
             <h6>Top Products</h6>
@@ -132,7 +132,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <div class="row footer-bottom d-flex justify-content-between">
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -141,16 +141,19 @@
           <script>
             document.write(new Date().getFullYear());
           </script>
-          All rights reserved | This template is made with
+         | developed with
+          <i class="fa fa-heart-o" aria-hidden="true"></i> by
+          <a href="https://dev-ashanur.com" target="_blank">Ashanaur</a>
+          | made with
           <i class="fa fa-heart-o" aria-hidden="true"></i> by
           <a href="https://colorlib.com" target="_blank">Colorlib</a>
         </p>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         <div class="col-lg-4 col-sm-12 footer-social">
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-dribbble"></i></a>
-          <a href="#"><i class="fa fa-behance"></i></a>
+          <a href="https://www.facebook.com/ashanaur.rahman.16" target="_blank"><i class="fa fa-facebook"></i></a>
+          <a href="https://github.com/DEV-ASHANAUR" target="_blank"><i class="fa fa-github"></i></a>
+          <a href="mailto:ashanour009@gmail.com"><i class="fa fa-envelope"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 @extends('fontend.layouts.master')
 @section('title')
-    Posts Page
+    DEV-TECH | SEARCH
 @endsection
 @section('content')
     <!-- Start top-section Area -->
@@ -38,7 +38,7 @@
               <div class="col-lg-8">
                 <div class="top-posts pt-50">
                   <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row">
                      @forelse ($posts as $post)
                       <div class="single-posts col-lg-6 col-sm-6">
                         <img class="img-fluid" src="{{ asset('storage/post/'.$post->image) }}" alt="" />

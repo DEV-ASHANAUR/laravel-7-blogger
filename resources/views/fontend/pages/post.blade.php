@@ -1,6 +1,6 @@
 @extends('fontend.layouts.master')
 @section('title')
-    Post Page
+    DEV-TECH | POST DETAILS
 @endsection
 @section('style')
     <style>
@@ -15,7 +15,7 @@
         <div class="container">
           <div class="row justify-content-between align-items-center d-flex">
             <div class="col-lg-8 top-left">
-              <h1 class="text-white mb-20">Post Details</h1>
+              <h3 class="text-white mb-20">POST DETAILS</h3>
               <ul>
                 <li>
                   <a href="index.html">Home</a

@@ -8,7 +8,7 @@
         <div class="container">
           <div class="row justify-content-between align-items-center d-flex">
             <div class="col-lg-8 top-left">
-              <h1 class="text-white mb-20">Tag Post :) {{ $query }}</h1>
+              <h3 class="text-white mb-20 text-capitalize">TAG POST -> {{ $query }}</h3>
               <ul>
                 <li>
                   <a href="{{ route('home.index') }}">Home</a
@@ -35,7 +35,7 @@
               <div class="col-lg-8">
                 <div class="top-posts pt-50">
                   <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row">
                      @forelse ($tags as $tag)
                       <div class="single-posts col-lg-6 col-sm-6">
                         <img class="img-fluid" src="{{ asset('storage/post/'.$tag->post->image) }}" alt="" />

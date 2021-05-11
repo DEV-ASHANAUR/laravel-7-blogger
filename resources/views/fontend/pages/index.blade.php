@@ -1,6 +1,6 @@
 @extends('fontend.layouts.master')
 @section('title')
-    Home Page
+  DEV-TECH | HOME
 @endsection
 @section('style')
   <style>
@@ -95,7 +95,9 @@
       <div class="active-cat-carusel">
         @foreach ($posts as $post)
         <div class="item single-cat">
-          <img src="{{ asset('storage/post/'.$post->image) }}" alt="" />
+          <a href="{{ route('post',$post->slug) }}">
+            <img src="{{ asset('storage/post/'.$post->image) }}" alt="" />
+          </a>
           <p class="date">{{ $post->created_at->diffForHumans() }}</p>
           <h4><a href="{{ route('post',$post->slug) }}">{{ $post->title }}</a></h4>
         </div>
@@ -121,7 +123,9 @@
 
           <div class="col-lg-6 col-md-6 mb-3 travel-left">
               <div class="single-travel media pb-70">
-                <img class="img-fluid d-flex  mr-3" width="195px" height="180px" src="{{ asset('storage/post/'.$post->image) }}" alt="">
+                <a href="{{ route('post',$post->slug) }}">
+                  <img class="img-fluid d-flex  mr-3" width="195px" height="180px" src="{{ asset('storage/post/'.$post->image) }}" alt="">
+                </a>
                 <div class="dates">
                   {{ $post->created_at->diffForHumans() }}
                 </div>
@@ -170,7 +174,7 @@
           <h4>About the Creator</h4>
           <br>
           <p>I am <span class="c1">Web Developer</span> specialized <span class="c1">LARAVEL</span> - PHP.
-            Currently Studing Complete diploma in Computer Technology. <span class="c1">Now I Am Learning About Web Development</span>.
+            Currently Complete diploma in Computer Technology. <span class="c1">Now I Am Learning About Web Development</span>.
           </p>
           <br>
           <h4>Email: <span style="font-size: medium; font-weight: lighter;">ashanour009@gmail.com</span></h4>
@@ -186,8 +190,8 @@
               <div class="thumb">
                 <img class="img-fluid w-75 mx-auto" src="{{ asset('fontend') }}/./img/ashanur.jpg" alt="admin">
                 <div class="align-items-center justify-content-center d-flex">
-                  <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                  <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                  <a href="https://www.facebook.com/ashanaur.rahman.16" target="_blank"><i class="fa fa-facebook"></i></a>
+                  <a href="https://github.com/DEV-ASHANAUR" target="_blank"><i class="fa fa-github"></i></a>
                 </div>
               </div>
               <div class="meta-text mt-30 text-center">

@@ -1,6 +1,6 @@
 @extends('fontend.layouts.master')
 @section('title')
-    Posts Page
+DEV-TECH | CATEGORY POST
 @endsection
 @section('content')
     <!-- Start top-section Area -->
@@ -8,7 +8,7 @@
         <div class="container">
           <div class="row justify-content-between align-items-center d-flex">
             <div class="col-lg-8 top-left">
-              <h1 class="text-white mb-20"> Category Post :) {{ $category->name }}</h1>
+              <h3 class="text-white mb-20 text-capitalize"> CATEGORY POST -> {{ $category->name }}</h3>
               <ul>
                 <li>
                   <a href="index.html">Home</a
@@ -35,7 +35,7 @@
               <div class="col-lg-8">
                 <div class="top-posts pt-50">
                   <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row">
                      @forelse ($posts as $post)
                       <div class="single-posts col-lg-6 col-sm-6">
                         <img class="img-fluid" src="{{ asset('storage/post/'.$post->image) }}" alt="" />
@@ -48,12 +48,17 @@
                           </p>
                           <p class="footer pt-20">
                             <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            <a href="#">06 Likes</a>
+                            <a href="{{ route('post',$post->slug) }}">{{ $post->likedUsers->count() }} Likes</a>
                             <i
                               class="ml-20 fa fa-comment-o"
                               aria-hidden="true"
                             ></i>
-                            <a href="#">02 Comments</a>
+                            <a href="{{ route('post',$post->slug) }}">{{ $post->comments->count() }} Comments</a>
+                            <i
+                              class="ml-20 fa fa-eye"
+                              aria-hidden="true"
+                            ></i>
+                            <a href="{{ route('post',$post->slug) }}">{{ $post->view_count }} views</a>
                           </p>
                         </div>
                       </div>
@@ -68,6 +73,7 @@
                 </div>
               </div>
               <div class="col-lg-4 sidebar-area">
+                @include('fontend.layouts.partials.search-bar')
                 @include('fontend.layouts.partials.sidebar')  
               </div>
             </div>
