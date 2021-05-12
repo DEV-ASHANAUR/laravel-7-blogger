@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Pending Post - User Panel
+    Favourite List | User Panel
 @endsection
 @section('style')
     <style>
@@ -9,10 +9,10 @@
         }
     </style>
 @endsection
-@section('post')
+@section('fav')
     in
 @endsection
-@section('pending-post')
+@section('all-fav')
     active
 @endsection
 @section('main-content')
@@ -21,10 +21,10 @@
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="breadcrumbs-area clearfix">
-                    <h4 class="page-title pull-left">Pending Post</h4>
+                    <h4 class="page-title pull-left">Post List</h4>
                     <ul class="breadcrumbs pull-left">
                         <li><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li><span>Pending Post</span></li>
+                        <li><span>Post List</span></li>
                     </ul>
                 </div>
             </div>
@@ -39,11 +39,11 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title float-left">Pending Post</h4>
+                        <h4 class="header-title float-left">Favourite List</h4>
                        
-                        <p class="float-right mb-3">
+                        {{-- <p class="float-right mb-3">
                             <a class="btn btn-primary" href="{{ route('user.post.create') }}"><i class="fa fa-plus"></i></a>
-                        </p>
+                        </p> --}}
                         
                         <div class="clearfix"></div>
                         <div class="data-tables">
@@ -59,7 +59,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($posts as $key => $post)
+                                    @foreach ($likePosts as $key => $post)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
                                         <td class="text-capitalize">{{ $post->title }}</td>
@@ -76,11 +76,11 @@
                                             
                                             <a href="{{ route('user.post.show',$post->id) }}" class="btn btn-sm btn-primary mr-1" title="View"><i class="fa fa-eye"></i></a>
                                             
-                                            <a href="{{ route('user.post.edit',$post->id) }}" class="btn btn-sm btn-success mr-1" title="Edit"><i class="fa fa-edit"></i></a>
+                                            {{-- <a href="{{ route('user.post.edit',$post->id) }}" class="btn btn-sm btn-success mr-1" title="Edit"><i class="fa fa-edit"></i></a>
                                             
 
                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-{{ $post->id }}"><i class="fa fa-trash"></i>
-                                            </button>
+                                            </button> --}}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -88,34 +88,7 @@
                             </table>
                         </div>
                     </div>
-                    {{-- --------modal start------------ --}}
-                    @foreach ($posts as $key => $post)
-                    <div class="modal fade bd-example-modal-sm" id="delete-{{ $post->id }}">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Delete Post</h5>
-                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>
-                                        Are You Sure ! Delete This Admin?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary btn-flat" data-dismiss="modal">Cancle</button>
-                                    <button type="button" class="btn btn-danger btn-flat" onclick="event.preventDefault();
-                                    document.getElementById('deletePost-{{$post->id}}').submit();">Delete</button>
-                                    <form action="{{ route('user.post.destroy',$post->id) }}" style="display: none" id="deletePost-{{$post->id}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                    {{-- --------modal end------------ --}}
+                    
                 </div>
             </div>
         </div>

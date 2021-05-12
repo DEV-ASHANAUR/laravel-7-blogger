@@ -226,4 +226,9 @@ class PostController extends Controller
         $posts = Post::findOrFail($post);
         return view('user.pages.post.likeduser',compact('posts'));
     }
+    public function favourite(){
+        $user = Auth::user();
+        $likePosts = $user->likedPost()->get();
+        return view('user.pages.favourite.index',compact('likePosts'));
+    }
 }

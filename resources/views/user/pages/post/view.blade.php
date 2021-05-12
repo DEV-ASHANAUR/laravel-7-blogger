@@ -39,7 +39,7 @@
                         <h4 class="header-title">View Post </h4>
                         @if ($post->status == 1)
                         <p class="float-right mb-3">
-                            <a class="btn btn-primary" href="{{ route('post',$post->slug) }}"><i class="fa fa-eye"></i> preview</a>
+                            <a class="btn btn-primary" href="{{ route('post',$post->slug) }}" target="_blank"i class="fa fa-eye"></i> preview</a>
                         </p>
                         @endif
                         <div class="card-body">
@@ -73,6 +73,10 @@
                                     <div class="mt-2 mb-2">
                                         <h5 class="text-capitalize">Total View</h5>
                                         <span class="ml-3 text-capitalize badge badge-pill badge-success">{{ $post->view_count }}</span>
+                                    </div>
+                                    <div class="mt-2 mb-2">
+                                        <h5 class="text-capitalize">Total Comment</h5>
+                                        <span class="ml-3 text-capitalize badge badge-pill badge-success">{{ $post->comments->count() }}</span>
                                     </div>
                                     <div class="mt-2 mb-2">
                                         <h5 class="text-capitalize">Post Tag</h5>

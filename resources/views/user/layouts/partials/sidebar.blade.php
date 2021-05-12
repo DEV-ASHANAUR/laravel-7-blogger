@@ -5,7 +5,12 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="index.html"><img src="{{ asset('backend') }}/assets/images/icon/logo.png" alt="logo"></a>
+            {{-- <a href="index.html"><img src="{{ asset('backend') }}/assets/images/icon/logo.png" alt="logo"></a>
+             --}}
+             <a href="{{ url('/') }}">
+                {{-- <img src="{{ asset('backend') }}/assets/images/icon/logo.png" alt="logo"> --}}
+                <h5 class="text-white">Dev-Tech</h5>
+            </a>
         </div>
     </div>
     <div class="main-menu">
@@ -25,7 +30,7 @@
                     {{-- post start --}}
                    
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
                                 Posts
                             </span></a>
                         <ul class="collapse @yield('post')">
@@ -40,9 +45,21 @@
                     </li>
                     
                     {{-- post end --}}
+                    {{-- Fav post start --}}
+                   
+                    <li>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-heart"></i><span>
+                                Favourite
+                            </span></a>
+                        <ul class="collapse @yield('fav')">
+                            <li class="@yield('all-fav')"><a href="{{ route('user.fav.list') }}">View List</a></li>
+                        </ul>
+                    </li>
+                    
+                    {{-- Fav post end --}}
                     {{-- comment --}}
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-comment"></i><span>
                                 Comment
                             </span></a>
                         <ul class="collapse @yield('comment')">

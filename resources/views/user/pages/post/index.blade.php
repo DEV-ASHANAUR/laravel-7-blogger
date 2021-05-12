@@ -74,7 +74,7 @@
                                         </td>
                                         <td>
                                             
-                                            <a href="{{ route('user.post.show',$post->id) }}" class="btn btn-sm btn-primary mr-1" title="Edit"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('user.post.show',$post->id) }}" class="btn btn-sm btn-primary mr-1" title="View"><i class="fa fa-eye"></i></a>
                                             
                                             <a href="{{ route('user.post.edit',$post->id) }}" class="btn btn-sm btn-success mr-1" title="Edit"><i class="fa fa-edit"></i></a>
                                             

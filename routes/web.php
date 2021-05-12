@@ -45,10 +45,12 @@ Route::prefix('user')->group(function(){
         Route::resource('post', 'User\PostController',['names' => 'user.post']);
         Route::get('/post-pending', 'User\PostController@pending')->name('user.post.pending');
         Route::get('/post-liked-users/{post}', 'User\PostController@likedUsers')->name('like.users');
+        Route::get('/fav-list', 'User\PostController@favourite')->name('user.fav.list');
         Route::get('/comment','User\CommentController@index')->name('user.comment.index');
         Route::delete('/comment/{id}', 'User\CommentController@destroy')->name('user.comment.destroy');
         Route::get('/comment-reply','User\ReplyCommentController@index')->name('user.comment.reply');
         Route::delete('/comment-reply/{id}', 'User\ReplyCommentController@destroy')->name('user.reply.destroy');
+        
     });
 });
 
